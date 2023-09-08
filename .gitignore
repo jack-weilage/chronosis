@@ -1,0 +1,4 @@
+node_modules/
+lib/
+# Used to get RTX working with lefthook, not required.
+lefthook-local.yml

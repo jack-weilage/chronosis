@@ -1,0 +1,19 @@
+pre-push:
+  parallel: true
+  commands:
+    size:
+      run: bun run scripts/size.ts
+    test:
+      run: bun test --coverage
+
+pre-commit:
+  parallel: true
+  commands:
+    prettier:
+      glob: '*.{ts,json,md,yml}'
+      run: bunx prettier --cache --write {staged_files} && git add {staged_files}
+    test:
+      run: bun test --coverage
+    tsc:
+      glob: '*.ts'
+      run: bunx tsc

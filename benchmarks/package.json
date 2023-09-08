@@ -1,0 +1,16 @@
+{
+  "name": "benchmarks",
+  "type": "module",
+  "scripts": {
+    "bench": "bun run src/index.ts"
+  },
+  "devDependencies": {
+    "@types/luxon": "^3.3.2",
+    "bun-types": "^0.8.1",
+    "dayjs": "latest",
+    "luxon": "latest",
+    "mitata": "^0.1.6",
+    "moment": "latest",
+    "typescript": "^5.2.2"
+  }
+}

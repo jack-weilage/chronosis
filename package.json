@@ -1,0 +1,35 @@
+{
+  "name": "chronosis",
+  "version": "0.0.0",
+  "description": "An extremely lightweight, modern date management library",
+  "keywords": [
+    "date",
+    "time",
+    "chronosis",
+    "typescript"
+  ],
+  "type": "module",
+  "module": "./lib/index.js",
+  "types": "./lib/index.d.ts",
+  "scripts": {
+    "build": "bun build:code && bun build:types",
+    "build:code": "bun build --minify --sourcemap=external --outdir=lib ./src/index.ts",
+    "build:types": "dts-bundle-generator --export-referenced-types false -o ./lib/index.d.ts ./src/index.ts",
+    "format": "prettier --cache --ignore-path .gitignore --write .",
+    "lint": "prettier --cache --ignore-path .gitignore --check . && tsc",
+    "prepare": "lefthook install",
+    "release": "bun run build && changeset publish",
+    "size": "bun run scripts/size.ts",
+    "size:watch": "bun run --watch scripts/size.ts --watching"
+  },
+  "devDependencies": {
+    "@changesets/cli": "^2.26.2",
+    "bun-types": "^0.8.1",
+    "dts-bundle-generator": "^8.0.1",
+    "lefthook": "^1.4.10",
+    "prettier": "^3.0.3",
+    "prettier-plugin-organize-imports": "^3.2.3",
+    "prettier-plugin-packagejson": "^2.4.5",
+    "typescript": "^5.2.2"
+  }
+}
