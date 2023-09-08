@@ -1,7 +1,6 @@
 <div align="center">
 	<br>
-	<img width="35%" src="./.github/assets/logo-light.svg#gh-light-mode-only">
-	<img width="35%" src="./.github/assets/logo-dark.svg#gh-dark-mode-only">
+	<img width="35%" src=".github/assets/logo.svg">
 	<br>
 	<br>
 
@@ -12,7 +11,7 @@
 
 <hr><br>
 
-<img src="./.github/assets/bench.gif" align="right" width="45%">
+<img src=".github/assets/bench.gif" align="right" width="50%">
 
 **The fastest and smallest date manipulation library.**
 
@@ -40,14 +39,24 @@ npm install chronosis
 
 Once complete, just import the `Chronosis` class into your code, and start programming!
 
-## Examples
+## Usage
 
-### Format a date to plain text
+Manipulating dates and times should be simple, so `Chronosis` makes it easy.
 
 ```ts
-// Will return 'June 12, 2023 (12 pm)'
-new Chronosis(new Date(2023, 5, 12, 11)).format('MMMM D, YYYY (H a)')
+import { Chronosis } from 'chronosis'
+
+const chrono = new Chronosis()
+
+// Familiar, chainable syntax
+chrono.add(1, 'day').set('hour', 11).startOf('hour')
+
+// Intuitive, internationalized formatting
+console.log(chrono.format('dddd, MMMM D, YYYY', 'es-MX'))
+// Logs something like 'sábado, septiembre 9, 2023'
 ```
+
+## Examples
 
 ### Find how many days are left in the month
 
