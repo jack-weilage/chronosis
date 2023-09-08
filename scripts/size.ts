@@ -8,7 +8,6 @@ async function build(entry: string) {
 	const result = await Bun.build({
 		entrypoints: [entry],
 		minify: true,
-		sourcemap: 'external',
 	})
 	const buffer = Buffer.from(await result.outputs[0].arrayBuffer())
 
