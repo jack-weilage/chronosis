@@ -11,6 +11,10 @@
   "type": "module",
   "module": "./lib/index.js",
   "types": "./lib/index.d.ts",
+  "files": [
+    "./lib",
+    "README.md"
+  ],
   "scripts": {
     "build": "bun build:code && bun build:types",
     "build:code": "bun build --minify --sourcemap=external --outdir=lib ./src/index.ts",
