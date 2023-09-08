@@ -227,70 +227,75 @@ export class Chronosis {
 	 * ```
 	 */
 	format(format_string: string): string {
-		return format_string.replace(FORMAT_REGEX, (match, $1) => {
-			// If we match the capture pattern '\[(.*)\]' we should break out early.
-			if ($1 !== undefined) {
-				return $1
-			}
+		return (
+			format_string
+				// Prevent possible regex DOS due to massive strings
+				.substring(0, 1000)
+				.replace(FORMAT_REGEX, (match, $1) => {
+					// If we match the capture pattern '\[(.*)\]' we should break out early.
+					if ($1 !== undefined) {
+						return $1
+					}
 
-			//PERF: Intl.DateTimeFormat is very slow, but very small compared to other solutions.
-			//TODO: Search for a faster solution?
-			const intl_format = (options: Intl.DateTimeFormatOptions) =>
-				new Intl.DateTimeFormat(this.#locale, options).format(this.#date)
+					//PERF: Intl.DateTimeFormat is very slow, but very small compared to other solutions.
+					//TODO: Search for a faster solution?
+					const intl_format = (options: Intl.DateTimeFormatOptions) =>
+						new Intl.DateTimeFormat(this.#locale, options).format(this.#date)
 
-			switch (match) {
-				case 'YY':
-					return pad_to_digits(this.get('year') % 100)
-				case 'YYYY':
-					return this.get('year')
-				case 'M':
-					return this.get('month') + 1
-				case 'MM':
-					return pad_to_digits(this.get('month') + 1)
-				case 'MMM':
-					return intl_format({ month: 'short' })
-				case 'MMMM':
-					return intl_format({ month: 'long' })
-				case 'D':
-					return this.get('day')
-				case 'DD':
-					return pad_to_digits(this.get('day'))
-				case 'd':
-					return this.#date.getDay()
-				case 'dd':
-					return intl_format({ weekday: 'narrow' })
-				case 'ddd':
-					return intl_format({ weekday: 'short' })
-				case 'dddd':
-					return intl_format({ weekday: 'long' })
-				case 'H':
-					return this.get('hour')
-				case 'HH':
-					return pad_to_digits(this.get('hour'))
-				case 'h':
-					return this.get('hour') % 12
-				case 'hh':
-					return pad_to_digits(this.get('hour') % 12)
-				case 'm':
-					return this.get('minute')
-				case 'mm':
-					return pad_to_digits(this.get('minute'))
-				case 's':
-					return this.get('second')
-				case 'ss':
-					return pad_to_digits(this.get('second'))
-				case 'SSS':
-					return pad_to_digits(this.get('millisecond'), 3)
-				case 'Z':
-					return `+${pad_to_digits(this.#date.getTimezoneOffset() / 60)}:00`
-				case 'a':
-					return this.get('hour') < 12 ? 'am' : 'pm'
-				case 'A':
-					return this.get('hour') < 12 ? 'AM' : 'PM'
-				default:
-					return match
-			}
-		})
+					switch (match) {
+						case 'YY':
+							return pad_to_digits(this.get('year') % 100)
+						case 'YYYY':
+							return this.get('year')
+						case 'M':
+							return this.get('month') + 1
+						case 'MM':
+							return pad_to_digits(this.get('month') + 1)
+						case 'MMM':
+							return intl_format({ month: 'short' })
+						case 'MMMM':
+							return intl_format({ month: 'long' })
+						case 'D':
+							return this.get('day')
+						case 'DD':
+							return pad_to_digits(this.get('day'))
+						case 'd':
+							return this.#date.getDay()
+						case 'dd':
+							return intl_format({ weekday: 'narrow' })
+						case 'ddd':
+							return intl_format({ weekday: 'short' })
+						case 'dddd':
+							return intl_format({ weekday: 'long' })
+						case 'H':
+							return this.get('hour')
+						case 'HH':
+							return pad_to_digits(this.get('hour'))
+						case 'h':
+							return this.get('hour') % 12
+						case 'hh':
+							return pad_to_digits(this.get('hour') % 12)
+						case 'm':
+							return this.get('minute')
+						case 'mm':
+							return pad_to_digits(this.get('minute'))
+						case 's':
+							return this.get('second')
+						case 'ss':
+							return pad_to_digits(this.get('second'))
+						case 'SSS':
+							return pad_to_digits(this.get('millisecond'), 3)
+						case 'Z':
+							return `+${pad_to_digits(this.#date.getTimezoneOffset() / 60)}:00`
+						case 'a':
+							return this.get('hour') < 12 ? 'am' : 'pm'
+						case 'A':
+							return this.get('hour') < 12 ? 'AM' : 'PM'
+						default:
+							return match
+					}
+				})
+		)
 	}
 
 	/**
