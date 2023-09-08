@@ -12,8 +12,7 @@
   "module": "./lib/index.js",
   "types": "./lib/index.d.ts",
   "files": [
-    "./lib",
-    "README.md"
+    "./lib"
   ],
   "scripts": {
     "build": "bun build:code && bun build:types",

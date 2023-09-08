@@ -1,0 +1,5 @@
+---
+'chronosis': patch
+---
+
+Test release
