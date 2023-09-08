@@ -11,9 +11,9 @@ pre-commit:
   commands:
     prettier:
       glob: '*.{ts,json,md,yml}'
-      run: bunx prettier --cache --write {staged_files} && git add {staged_files}
+      run: bun x prettier --cache --write {staged_files} && git add {staged_files}
     test:
       run: bun test --coverage
     tsc:
       glob: '*.ts'
-      run: bunx tsc
+      run: bun x tsc
