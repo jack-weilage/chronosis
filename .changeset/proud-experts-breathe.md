@@ -1,5 +1,0 @@
----
-'chronosis': patch
----
-
-Initial release
