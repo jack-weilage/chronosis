@@ -10,7 +10,6 @@ import { FORMAT_REGEX, pad_to_digits } from './utils.ts'
  */
 export class Chronosis {
 	#date: Date
-	#locale: string
 
 	/**
 	 * Creates a new Chronosis object, representing the current date.
@@ -28,9 +27,8 @@ export class Chronosis {
 	 * ```
 	 */
 	constructor(date: DateLike)
-	constructor(date?: DateLike, locale = 'en-US') {
+	constructor(date?: DateLike) {
 		this.#date = date !== undefined ? new Date(date) : new Date()
-		this.#locale = locale
 	}
 
 	/**
@@ -226,7 +224,7 @@ export class Chronosis {
 	 *
 	 * ```
 	 */
-	format(format_string: string): string {
+	format(format_string: string, locale?: string): string {
 		return (
 			format_string
 				// Prevent possible regex DOS due to massive strings
@@ -240,7 +238,7 @@ export class Chronosis {
 					//PERF: Intl.DateTimeFormat is very slow, but very small compared to other solutions.
 					//TODO: Search for a faster solution?
 					const intl_format = (options: Intl.DateTimeFormatOptions) =>
-						new Intl.DateTimeFormat(this.#locale, options).format(this.#date)
+						new Intl.DateTimeFormat(locale, options).format(this.#date)
 
 					switch (match) {
 						case 'YY':
