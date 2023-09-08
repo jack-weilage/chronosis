@@ -12,16 +12,23 @@
                     url('data:application/font-woff2;base64,d09GMgABAAAAAASwABAAAAAACKAAAARUAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAGiobgUYcKAZgP1NUQVQuAFQRCAqFFIQXCxQAATYCJAMkBCAFhBoHIAwHG/cGyMSnf7fec5OgwVZMkelbcfAVU2AtWbGvktahLoJ0hn0Vtfz/+82KhqhNtGRqgou+f3FvIt4gJELl0Ij4XLuEupAW4lrcVGMLM1suhddqEFBIhRbQgMhqHuUxoUwmidCQ9QqVyIfpGpujYwCa1dntdWjALDP8P8pWFjfXIc+1oYgBBXlgBkoei+dlHTgG9Ioxokv8QwQBCIUYSE5E6elAxULUiATUdKihap8IQexMoQxE/KBI/B60+D1/h/gjJOIHkIo/QiZ+ygCnEIXsWJAMTGhLJcpIzoKki/JTIwDa06XIFEwk49ITRHzX0uasG09B/Q9Ff/n/vwD9JWHGBSRKPRDKhoKmDjHGx13poPbcnm0CXcdqJUXOAqjHtgQbeiLxoFcEGLSoqEJ7EoNszMMLDlvUoSb0YB2bPyB+KV4hXiJeIJ5HUcNLiChCiwqRHkt0PO0lD5HMsDAxYDf4JsLbGYb/I2XGMYwqjtHpGE0pK9Eyc2paNdg82DDeONA06w+HiRCJsIFQY88tryj9wSB8oRAbeLWs97GgmhbCSv9Ld6FOiETYQCgESiVhGZZmqSn/HUS4kw3cDt9taloIK6fM0iy178Uh+ILBoUAkQoRw+IBPolmKrhIibODlkp4LHlD63xr0h98o7b85xAYeJcIjr4RfeYYIz67FClr/mYfge/jll19+Gr5g7wPKB26d7Pq7K+/qU44ePYVRnfrFl6ciVeHgzS283dHC8S2O6snixEdHvy6ssBcXOfX6Iqe9pKLwa++tkqkSnJNQZbVX5R/7R76tSt8/aKiq6tPrB2uKbnll7BVYo2PR8tqUH1OSf0xJ+TE55UecM5V/RD9kDEbHoid+CWc28w67eZ0zO+x8i5mzO8w8b7YNVdhLilz6ymKnrbjiCrRKmus7wRIdi2ozx/tXuvMvOu22HxqTTSLeUxQ74h8Yu/hKa2Zp6WFqasc5LbGXW8vKrmjLOVIzVPjAxbW3FhT5k5Nrr/75Snu5daoTAPDxXpNySb3cLUxrG36T0/SXfcnD6Gf/p0d+WJdUKvr+v0OTSR/yFunnSJGXHV75lTQzou//GU3mC/ccQEHdgV7yFfKofFjwIapTJaoKeeTaGnIrkvHWyZUK3AcNOj/+Ec9Cj1CbOcW8tpGbCGz4FVh+5WUUNPhcRsOE+2QM0nGRTII6TMmkSIdFqkEVVBTZ72RgGIvwwg0PtsPWbfDYQh30ylFbmMcmvOCxLZJKW81/9CoqwWETbujRDQc60I0dbGMJXmyjAn1YhBs7WMUsNjGk4uaaVg7ryIYRlSIxKKl6uLEkEI4/ahVbGIcBlahV502oxuSOqrJHdtj8EjYxCzfqKYypjcyqtIIDjwMWdQB+UzZMMMAEI7IxAA8WkU3kpB5sgsMyFjFfR/MIepCQLWF6MUR0ryIesXMOlZgHhzV0QzsCnDGtUAUcwAA7lvwgNfoi8TKY4JU/RMQT72JOBwAA');
             }
         </style>
-        <clipPath id="_clipPath_CMBfo3RVMeZ8mK1EYI7qpFLq8XL4aXIi">
-            <rect x="0" y="0" width="186" height="50.4" transform="matrix(1,0,0,1,779.3,148)" />
+        <clipPath id="_clipPath_pdDlKFoMgDRorYxIW04bvI1rUGhKmje7">
+            <rect x="779.3" y="148" width="188" height="50.4" />
         </clipPath>
     </defs>
 
-    <g clip-path="url(#_clipPath_CMBfo3RVMeZ8mK1EYI7qpFLq8XL4aXIi)">
-        <text transform="matrix(1,0,0,1,779.3,188)"
-            style="font-family:'Outfit';font-weight:400;font-size:40px;letter-spacing:2;fill:currentColor;stroke:none;">chronosis</text>
+    <g clip-path="url(#_clipPath_pdDlKFoMgDRorYxIW04bvI1rUGhKmje7)">
+        <defs>
+            <clipPath id="_clipPath_CMBfo3RVMeZ8mK1EYI7qpFLq8XL4aXIi">
+                <rect x="0" y="0" width="186" height="50.4" transform="matrix(1,0,0,1,779.3,148)" />
+            </clipPath>
+        </defs>
+        <g clip-path="url(#_clipPath_CMBfo3RVMeZ8mK1EYI7qpFLq8XL4aXIi)">
+            <text transform="matrix(1,0,0,1,779.3,188)"
+                style="font-family:'Outfit';font-weight:400;font-size:40px;letter-spacing:2;fill:currentColor;stroke:none;">chronosis</text>
+        </g>
+        <path
+            d=" M 852 173.2 L 852 179.501 L 852.328 179.866 L 855.824 183.362 L 857.5 181.686 L 854.331 178.517 L 854.331 173.2 L 852 173.2 Z "
+            fill="currentColor" />
     </g>
-    <path
-        d=" M 852 173.2 L 852 179.501 L 852.328 179.866 L 855.824 183.362 L 857.5 181.686 L 854.331 178.517 L 854.331 173.2 L 852 173.2 Z "
-        fill="currentColor" />
 </svg>
