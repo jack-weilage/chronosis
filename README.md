@@ -41,10 +41,6 @@ npm install chronosis
 
 Once complete, just import the `Chronosis` class into your code, and start programming!
 
-```ts
-
-```
-
 ## Examples
 
 ### Format a date to plain text
