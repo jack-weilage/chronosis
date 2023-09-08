@@ -6,8 +6,7 @@
 	<br>
 
 ![Downloads per month](https://img.shields.io/npm/dm/chronosis?logo=npm)
-![Dependency count](https://img.shields.io/librariesio/release/npm/chronosis)
-![Package version](https://img.shields.io/npm/v/chronosis)
+![npm package minimized gzipped size (select exports)](https://img.shields.io/bundlejs/size/chronosis?exports=Chronosis)
 
 </div>
 
