@@ -1,10 +1,10 @@
 //TODO: Fully benchmark (maybe copy tests?)
 import { bench, group, run } from 'mitata'
 
+import { Chronosis } from 'chronosis'
 import dayjs from 'dayjs'
 import { DateTime } from 'luxon'
 import moment from 'moment'
-import { Chronosis } from '../../src/index.js'
 
 const ITERATIONS = 10000
 

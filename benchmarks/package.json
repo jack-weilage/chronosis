@@ -7,6 +7,7 @@
   "devDependencies": {
     "@types/luxon": "^3.3.2",
     "bun-types": "^0.8.1",
+    "chronosis": "latest",
     "dayjs": "latest",
     "luxon": "latest",
     "mitata": "^0.1.6",
