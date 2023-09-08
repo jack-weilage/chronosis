@@ -8,6 +8,11 @@
     "chronosis",
     "typescript"
   ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jack-weilage/chronosis.git"
+  },
+  "license": "MIT",
   "type": "module",
   "module": "./lib/index.js",
   "types": "./lib/index.d.ts",
