@@ -2,6 +2,7 @@
   "name": "benchmarks",
   "type": "module",
   "scripts": {
+    "prebench": "cd .. && bun run build:code && cd benchmarks",
     "bench": "bun run src/index.ts"
   },
   "devDependencies": {
