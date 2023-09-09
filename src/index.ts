@@ -92,33 +92,28 @@ export class Chronosis {
 	 */
 	set(unit: TimeUnit, value: number): Chronosis
 	set(unit_or_date: TimeUnit | DateLike, value?: number): Chronosis {
-		if (typeof value !== 'number') {
-			// If an input isn't a number, prevent undefined behavior by forcing the input to be invalid.
-			// @ts-expect-error - Assigning a string to a number to cause an invalid date
-			value = 'a' as number
-		}
-
+		// `value` can only be undefined when `unit_or_date` will not match any of the
 		switch (unit_or_date) {
 			case 'millisecond':
-				this.#date.setMilliseconds(value)
+				this.#date.setMilliseconds(value as number)
 				break
 			case 'second':
-				this.#date.setSeconds(value)
+				this.#date.setSeconds(value as number)
 				break
 			case 'minute':
-				this.#date.setMinutes(value)
+				this.#date.setMinutes(value as number)
 				break
 			case 'hour':
-				this.#date.setHours(value)
+				this.#date.setHours(value as number)
 				break
 			case 'day':
-				this.#date.setDate(value)
+				this.#date.setDate(value as number)
 				break
 			case 'month':
-				this.#date.setMonth(value)
+				this.#date.setMonth(value as number)
 				break
 			case 'year':
-				this.#date.setFullYear(value)
+				this.#date.setFullYear(value as number)
 				break
 			default:
 				this.#date = new Date(unit_or_date)
@@ -236,10 +231,7 @@ export class Chronosis {
 					}
 
 					//PERF: Intl.DateTimeFormat is very slow, but very small compared to other solutions.
-					//TODO: Search for a faster solution?
-					const intl_format = (options: Intl.DateTimeFormatOptions) =>
-						new Intl.DateTimeFormat(locale, options).format(this.#date)
-
+					//TODO: Create a cache of already-used DateTimeFormat objects for use later.
 					switch (match) {
 						case 'YY':
 							return pad_to_digits(this.get('year') % 100)
@@ -250,9 +242,9 @@ export class Chronosis {
 						case 'MM':
 							return pad_to_digits(this.get('month') + 1)
 						case 'MMM':
-							return intl_format({ month: 'short' })
+							return this.#date.toLocaleString(locale, { month: 'short' })
 						case 'MMMM':
-							return intl_format({ month: 'long' })
+							return this.#date.toLocaleString(locale, { month: 'long' })
 						case 'D':
 							return this.get('day')
 						case 'DD':
@@ -260,11 +252,11 @@ export class Chronosis {
 						case 'd':
 							return this.#date.getDay()
 						case 'dd':
-							return intl_format({ weekday: 'narrow' })
+							return this.#date.toLocaleString(locale, { weekday: 'narrow' })
 						case 'ddd':
-							return intl_format({ weekday: 'short' })
+							return this.#date.toLocaleString(locale, { weekday: 'short' })
 						case 'dddd':
-							return intl_format({ weekday: 'long' })
+							return this.#date.toLocaleString(locale, { weekday: 'long' })
 						case 'H':
 							return this.get('hour')
 						case 'HH':
