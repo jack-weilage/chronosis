@@ -48,11 +48,6 @@ export class Chronosis {
 	 */
 	get(unit: TimeUnit): number
 	get(unit?: TimeUnit): Date | number {
-		// If the function is called without a unit, return the internal date.
-		if (!unit) {
-			return this.#date
-		}
-
 		switch (unit) {
 			case 'millisecond':
 				return this.#date.getMilliseconds()
@@ -68,6 +63,10 @@ export class Chronosis {
 				return this.#date.getMonth()
 			case 'year':
 				return this.#date.getFullYear()
+			case undefined:
+				// If the function is called without a unit, return the internal date.
+				// Could save 4 bytes by leaving this the end of the function
+				return this.#date
 		}
 	}
 
@@ -92,34 +91,33 @@ export class Chronosis {
 	 */
 	set(unit: TimeUnit, value: number): Chronosis
 	set(unit_or_date: TimeUnit | DateLike, value?: number): Chronosis {
-		// `value` can only be undefined when `unit_or_date` will not match any of the
+		// `value` can only be undefined when `unit_or_date` will not match any of the cases.
 		switch (unit_or_date) {
 			case 'millisecond':
 				this.#date.setMilliseconds(value as number)
-				break
+				return this
 			case 'second':
 				this.#date.setSeconds(value as number)
-				break
+				return this
 			case 'minute':
 				this.#date.setMinutes(value as number)
-				break
+				return this
 			case 'hour':
 				this.#date.setHours(value as number)
-				break
+				return this
 			case 'day':
 				this.#date.setDate(value as number)
-				break
+				return this
 			case 'month':
 				this.#date.setMonth(value as number)
-				break
+				return this
 			case 'year':
 				this.#date.setFullYear(value as number)
-				break
+				return this
 			default:
 				this.#date = new Date(unit_or_date)
+				return this
 		}
-
-		return this
 	}
 
 	/**
