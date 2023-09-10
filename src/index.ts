@@ -71,16 +71,6 @@ export class Chronosis {
 	}
 
 	/**
-	 * Sets the contained date to `date`.
-	 *
-	 * ```ts
-	 * const chrono = new Chronosis()
-	 * // Some logic here...
-	 * chrono.set(new Date()) // Update the contained date.
-	 * ```
-	 */
-	set(date: DateLike): Chronosis
-	/**
 	 * Sets `unit` to `value`.
 	 *
 	 * If the value is outside of the possible range, the change propagates to other units (5:75 AM == 6:15 AM).
@@ -89,11 +79,12 @@ export class Chronosis {
 	 * new Chronosis().set('hour', 5) // Sets the hour to 5 AM
 	 * ```
 	 */
-	set(unit: TimeUnit, value: number): Chronosis
-	set(unit_or_date: TimeUnit | DateLike, value?: number): Chronosis {
+	set(unit: TimeUnit, value: number): Chronosis {
+		//TODO: This could be refactored with a TimeUnit - fn name map
+		// Would be smaller, but slightly slower.
+
 		let clone = new Date(this.#date)
-		// `value` can only be undefined when `unit_or_date` will not match any of the cases.
-		switch (unit_or_date) {
+		switch (unit) {
 			case 'millisecond':
 				clone.setMilliseconds(value as number)
 				break
@@ -115,8 +106,6 @@ export class Chronosis {
 			case 'year':
 				clone.setFullYear(value as number)
 				break
-			default:
-				clone = new Date(unit_or_date)
 		}
 
 		return new Chronosis(clone)

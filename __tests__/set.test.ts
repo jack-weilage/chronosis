@@ -5,28 +5,11 @@ beforeAll(() => {
 	setSystemTime(new Date(2020, 5, 15, 11, 29, 29, 499))
 })
 
-test('date', () => {
-	let chrono = new Chronosis()
-
-	expect(chrono.valueOf()).toBe(new Date().valueOf())
-
-	chrono = chrono.set(new Date(2021, 8, 21))
-	expect(chrono.valueOf()).toBe(new Date(2021, 8, 21).valueOf())
-})
-test('date-like', () => {
-	let chrono = new Chronosis()
-
-	chrono = chrono.set('09/21/2021')
-	expect(chrono.valueOf()).toBe(new Date(2021, 8, 21).valueOf())
-
-	chrono = chrono.set(1632182400000)
-	expect(chrono.valueOf()).toBe(new Date(2021, 8, 21).valueOf())
-})
 test('immutable', () => {
 	const first = new Chronosis()
 	const second = new Chronosis()
 
-	first.set(500000)
+	first.set('millisecond', 500000)
 
 	expect(first.valueOf()).toBe(second.valueOf())
 })
