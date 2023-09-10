@@ -18,6 +18,14 @@ test('no arg', () => {
 	expect(wrap_back.get('millisecond')).toBe(749)
 	expect(wrap_back.get('second')).toBe(28)
 })
+test('immutable', () => {
+	const first = new Chronosis()
+	const second = new Chronosis()
+
+	first.subtract(200)
+
+	expect(first.valueOf()).toBe(second.valueOf())
+})
 test('millisecond', () => {
 	const chrono = new Chronosis()
 

@@ -22,6 +22,14 @@ test('date-like', () => {
 	chrono = chrono.set(1632182400000)
 	expect(chrono.valueOf()).toBe(new Date(2021, 8, 21).valueOf())
 })
+test('immutable', () => {
+	const first = new Chronosis()
+	const second = new Chronosis()
+
+	first.set(500000)
+
+	expect(first.valueOf()).toBe(second.valueOf())
+})
 test('millisecond', () => {
 	const chrono = new Chronosis()
 

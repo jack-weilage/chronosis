@@ -5,6 +5,14 @@ beforeAll(() => {
 	setSystemTime(new Date(2020, 5, 15, 11, 29, 29, 499))
 })
 
+test('immutable', () => {
+	const first = new Chronosis()
+	const second = new Chronosis()
+
+	first.startOf('hour')
+
+	expect(first.valueOf()).toBe(second.valueOf())
+})
 test('second', () => {
 	const start = new Chronosis().startOf('second')
 
