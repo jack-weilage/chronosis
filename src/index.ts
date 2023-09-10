@@ -26,9 +26,9 @@ export class Chronosis {
 	 * new Chronosis(new Date(2020, 5, 15)) // Represents June 15th, 2020
 	 * ```
 	 */
-	constructor(date: DateLike)
-	constructor(date?: DateLike) {
-		this.#date = date !== undefined ? new Date(date) : new Date()
+	constructor(datelike: DateLike)
+	constructor(datelike?: DateLike) {
+		this.#date = datelike !== undefined ? new Date(datelike) : new Date()
 	}
 
 	/**
@@ -71,7 +71,7 @@ export class Chronosis {
 	}
 
 	/**
-	 * Sets `unit` to `value`.
+	 * Sets `unit` to `value`, returning a new object.
 	 *
 	 * If the value is outside of the possible range, the change propagates to other units (5:75 AM == 6:15 AM).
 	 *
@@ -112,7 +112,7 @@ export class Chronosis {
 	}
 
 	/**
-	 * Adds `ms` milliseconds to the contained date.
+	 * Adds `ms` milliseconds to the contained date, returning a new object.
 	 *
 	 * If the resulting value is outside of the possible range, the change propagates to other units (5:30 AM + 50 minutes == 6:20 AM)
 	 *
@@ -122,7 +122,7 @@ export class Chronosis {
 	 */
 	add(ms: number): Chronosis
 	/**
-	 * Adds `count` of `unit` to the contained date.
+	 * Adds `count` of `unit` to the contained date, returning a new object.
 	 *
 	 * If the resulting value is outside of the possible range, the change propagates to other units (5:30 AM + 50 minutes == 6:20 AM)
 	 *
@@ -136,7 +136,7 @@ export class Chronosis {
 	}
 
 	/**
-	 * Subtracts `ms` milliseconds from the contained date.
+	 * Subtracts `ms` milliseconds from the contained date, returning a new object.
 	 *
 	 * If the resulting value is outside of the possible range, the change propagates to other units (5:30 AM - 50 minutes == 4:40 AM)
 	 *
@@ -146,7 +146,7 @@ export class Chronosis {
 	 */
 	subtract(ms: number): Chronosis
 	/**
-	 * Subtracts `count` of `unit` from the contained date.
+	 * Subtracts `count` of `unit` from the contained date, returning a new object.
 	 *
 	 * If the resulting value is outside of the possible range, the change propagates to other units (5:30 AM - 50 minutes == 4:40 AM)
 	 *
@@ -160,7 +160,7 @@ export class Chronosis {
 	}
 
 	/**
-	 * Sets the contained date to the start of `unit`.
+	 * Sets the contained date to the start of `unit`, returning a new object.
 	 *
 	 * ```ts
 	 * new Chronosis().startOf('year') // Sets the date to the start of the year
@@ -191,7 +191,7 @@ export class Chronosis {
 	}
 
 	/**
-	 * Sets the contained date to the end of `unit`.
+	 * Sets the contained date to the end of `unit`, returning a new object.
 	 *
 	 * ```ts
 	 * new Chronosis().endOf('month') // Sets the date to the end of the month
