@@ -91,33 +91,35 @@ export class Chronosis {
 	 */
 	set(unit: TimeUnit, value: number): Chronosis
 	set(unit_or_date: TimeUnit | DateLike, value?: number): Chronosis {
+		let clone = new Date(this.#date)
 		// `value` can only be undefined when `unit_or_date` will not match any of the cases.
 		switch (unit_or_date) {
 			case 'millisecond':
-				this.#date.setMilliseconds(value as number)
-				return this
+				clone.setMilliseconds(value as number)
+				break
 			case 'second':
-				this.#date.setSeconds(value as number)
-				return this
+				clone.setSeconds(value as number)
+				break
 			case 'minute':
-				this.#date.setMinutes(value as number)
-				return this
+				clone.setMinutes(value as number)
+				break
 			case 'hour':
-				this.#date.setHours(value as number)
-				return this
+				clone.setHours(value as number)
+				break
 			case 'day':
-				this.#date.setDate(value as number)
-				return this
+				clone.setDate(value as number)
+				break
 			case 'month':
-				this.#date.setMonth(value as number)
-				return this
+				clone.setMonth(value as number)
+				break
 			case 'year':
-				this.#date.setFullYear(value as number)
-				return this
+				clone.setFullYear(value as number)
+				break
 			default:
-				this.#date = new Date(unit_or_date)
-				return this
+				clone = new Date(unit_or_date)
 		}
+
+		return new Chronosis(clone)
 	}
 
 	/**
@@ -154,25 +156,27 @@ export class Chronosis {
 	 * ```
 	 */
 	startOf(unit: Exclude<TimeUnit, 'millisecond'>): Chronosis {
+		let clone = this.clone()
+
 		// This could be turned into a simple loop...
 		// Unfortunately, this works best with gzip.
 		switch (unit) {
 			case 'year':
-				this.set('month', 0)
+				clone = clone.set('month', 0)
 			case 'month':
 				// The month starts on day 1, not 0
-				this.set('day', 1)
+				clone = clone.set('day', 1)
 			case 'day':
-				this.set('hour', 0)
+				clone = clone.set('hour', 0)
 			case 'hour':
-				this.set('minute', 0)
+				clone = clone.set('minute', 0)
 			case 'minute':
-				this.set('second', 0)
+				clone = clone.set('second', 0)
 			case 'second':
-				this.set('millisecond', 0)
+				clone = clone.set('millisecond', 0)
 		}
 
-		return this
+		return clone
 	}
 
 	/**
@@ -183,26 +187,28 @@ export class Chronosis {
 	 * ```
 	 */
 	endOf(unit: Exclude<TimeUnit, 'millisecond'>): Chronosis {
+		let clone = this.clone()
+
 		// This could be turned into a simple loop...
 		// Unfortunately, this works best with gzip.
 		switch (unit) {
 			case 'year':
-				this.set('month', 11)
+				clone = clone.set('month', 11)
 			case 'month':
 				// We could have a list of month lengths + leap year...
 				// but this solution is short and easily understandable.
-				this.add(1, 'month').set('day', 0)
+				clone = clone.add(1, 'month').set('day', 0)
 			case 'day':
-				this.set('hour', 23)
+				clone = clone.set('hour', 23)
 			case 'hour':
-				this.set('minute', 59)
+				clone = clone.set('minute', 59)
 			case 'minute':
-				this.set('second', 59)
+				clone = clone.set('second', 59)
 			case 'second':
-				this.set('millisecond', 999)
+				clone = clone.set('millisecond', 999)
 		}
 
-		return this
+		return clone
 	}
 
 	/**

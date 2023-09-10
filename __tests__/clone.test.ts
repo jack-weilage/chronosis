@@ -15,15 +15,11 @@ test("changing base doesn't affect clone", () => {
 	const base = new Chronosis()
 	const clone = base.clone()
 
-	base.add(1, 'hour')
-
-	expect(base.get('hour')).not.toBe(clone.get('hour'))
+	expect(base.add(1, 'hour').get('hour')).not.toBe(clone.get('hour'))
 })
 test("changing clone doesn't affect base", () => {
 	const base = new Chronosis()
 	const clone = base.clone()
 
-	clone.add(1, 'hour')
-
-	expect(base.get('hour')).not.toBe(clone.get('hour'))
+	expect(base.get('hour')).not.toBe(clone.add(1, 'hour').get('hour'))
 })

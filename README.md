@@ -1,11 +1,9 @@
 <div align="center">
 	<br>
 	<img width="35%" src=".github/assets/logo.png">
-	<br>
-	<br>
 
-![Downloads per month](https://img.shields.io/npm/dm/chronosis?logo=npm)
-![npm package minimized gzipped size (select exports)](https://img.shields.io/bundlejs/size/chronosis?exports=Chronosis)
+[![Downloads per month](https://img.shields.io/npm/dm/chronosis?logo=npm&cacheSeconds=60000)](https://www.npmjs.com/package/chronosis)
+[![npm package minimized gzipped size (select exports)](https://img.shields.io/bundlejs/size/chronosis?exports=Chronosis&cacheSeconds=600)](https://bundlephobia.com/package/chronosis)
 
 </div>
 
@@ -46,13 +44,13 @@ Manipulating dates and times should be simple, so `Chronosis` makes it easy.
 ```ts
 import { Chronosis } from 'chronosis'
 
-const chrono = new Chronosis()
+const now = new Chronosis()
 
 // Familiar, chainable syntax
-chrono.add(1, 'day').set('hour', 11).startOf('hour')
+const noon_tomorrow = now.add(1, 'day').set('hour', 11).startOf('hour')
 
 // Intuitive, internationalized formatting
-console.log(chrono.format('dddd, MMMM D, YYYY', 'es-MX'))
+console.log(noon_tomorrow.format('dddd, MMMM D, YYYY', 'es-MX'))
 // Logs something like 'sábado, septiembre 9, 2023'
 ```
 
@@ -62,7 +60,7 @@ console.log(chrono.format('dddd, MMMM D, YYYY', 'es-MX'))
 
 ```ts
 const now = new Chronosis()
-const end_of_month = now.clone().endOf('month')
+const end_of_month = now.endOf('month')
 
 const days_left = end_of_month.get('day') - now.get('day')
 ```

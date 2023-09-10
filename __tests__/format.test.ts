@@ -17,12 +17,12 @@ test('timezone', () => {
 	expect(chrono.format('Z')).toBe('+00:00')
 })
 test('meridiem', () => {
-	const chrono = new Chronosis()
+	let chrono = new Chronosis()
 
 	expect(chrono.format('a')).toBe('pm')
 	expect(chrono.format('A')).toBe('PM')
 
-	chrono.set('hour', 4)
+	chrono = chrono.set('hour', 4)
 
 	expect(chrono.format('a')).toBe('am')
 	expect(chrono.format('A')).toBe('AM')
@@ -45,13 +45,13 @@ test('minute', () => {
 	expect(chrono.format('mm')).toBe('09')
 })
 test('hour', () => {
-	const chrono = new Chronosis()
+	let chrono = new Chronosis()
 
 	expect(chrono.format('h')).toBe('2')
 	expect(chrono.format('hh')).toBe('02')
 
 	expect(chrono.format('H')).toBe('14')
-	chrono.set('hour', 2)
+	chrono = chrono.set('hour', 2)
 	expect(chrono.format('HH')).toBe('02')
 })
 test('weekday', () => {
