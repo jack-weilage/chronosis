@@ -123,6 +123,16 @@ export class Chronosis {
 	}
 
 	/**
+	 * Adds `ms` milliseconds to the contained date.
+	 *
+	 * If the resulting value is outside of the possible range, the change propagates to other units (5:30 AM + 50 minutes == 6:20 AM)
+	 *
+	 * ```ts
+	 * new Chronosis().add(2500) // Adds 2,500 milliseconds to the current date
+	 * ```
+	 */
+	add(ms: number): Chronosis
+	/**
 	 * Adds `count` of `unit` to the contained date.
 	 *
 	 * If the resulting value is outside of the possible range, the change propagates to other units (5:30 AM + 50 minutes == 6:20 AM)
@@ -131,10 +141,21 @@ export class Chronosis {
 	 * new Chronosis().add(15, 'day') // Adds 15 days to the current date
 	 * ```
 	 */
-	add(count: number, unit: TimeUnit): Chronosis {
+	add(count: number, unit: TimeUnit): Chronosis
+	add(count: number, unit: TimeUnit = 'millisecond'): Chronosis {
 		return this.set(unit, this.get(unit) + count)
 	}
 
+	/**
+	 * Subtracts `ms` milliseconds from the contained date.
+	 *
+	 * If the resulting value is outside of the possible range, the change propagates to other units (5:30 AM - 50 minutes == 4:40 AM)
+	 *
+	 * ```ts
+	 * new Chronosis().subtract(2000) // Subtracts 2,000 milliseconds from the current date
+	 * ```
+	 */
+	subtract(ms: number): Chronosis
 	/**
 	 * Subtracts `count` of `unit` from the contained date.
 	 *
@@ -144,7 +165,8 @@ export class Chronosis {
 	 * new Chronosis().subtract(2, 'year') // Subtracts 2 years from the current date
 	 * ```
 	 */
-	subtract(count: number, unit: TimeUnit): Chronosis {
+	subtract(count: number, unit: TimeUnit): Chronosis
+	subtract(count: number, unit: TimeUnit = 'millisecond'): Chronosis {
 		return this.set(unit, this.get(unit) - count)
 	}
 

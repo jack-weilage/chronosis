@@ -5,6 +5,19 @@ beforeAll(() => {
 	setSystemTime(new Date(2020, 5, 15, 11, 29, 29, 499))
 })
 
+test('no arg', () => {
+	const chrono = new Chronosis()
+
+	// Within normal range
+	const normal = chrono.subtract(250)
+	expect(normal.get('millisecond')).toBe(249)
+	expect(normal.get('second')).toBe(29)
+
+	// Should wrap back
+	const wrap_back = chrono.subtract(750)
+	expect(wrap_back.get('millisecond')).toBe(749)
+	expect(wrap_back.get('second')).toBe(28)
+})
 test('millisecond', () => {
 	const chrono = new Chronosis()
 
