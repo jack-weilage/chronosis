@@ -7,12 +7,12 @@
   },
   "devDependencies": {
     "@types/luxon": "^3.3.2",
-    "bun-types": "^0.8.1",
-    "chronosis": "latest",
-    "dayjs": "latest",
-    "luxon": "latest",
+    "bun-types": "^1.0.1",
+    "chronosis": "^0.0.3",
+    "dayjs": "^1.11.9",
+    "luxon": "^3.4.3",
     "mitata": "^0.1.6",
-    "moment": "latest",
+    "moment": "^2.29.4",
     "typescript": "^5.2.2"
   }
 }
