@@ -9,6 +9,9 @@
 
 <hr><br>
 
+> [!WARNING]  
+> Chronosis is currently in **BETA**. Expect frequent breaking changes as the API and codebase matures.
+
 <img src=".github/assets/bench.gif" align="right" width="50%">
 
 **The fastest and smallest date manipulation library.**
