@@ -15,3 +15,8 @@ test('toString', () => {
 
 	expect(chrono.toString()).toBe(new Date().toString())
 })
+test('toDate', () => {
+	const chrono = new Chronosis()
+
+	expect(chrono.toDate()).toEqual(new Date())
+})

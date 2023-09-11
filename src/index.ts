@@ -32,22 +32,13 @@ export class Chronosis {
 	}
 
 	/**
-	 * Returns a reference to the contained date.
-	 *
-	 * ```ts
-	 * new Chronosis().get().toISOString() // Calls `.toISOString()` on the contained date.
-	 * ```
-	 */
-	get(): Date
-	/**
 	 * Returns the value of `unit`.
 	 *
 	 * ```ts
 	 * new Chronosis().get('year') // Get the current year.
 	 * ```
 	 */
-	get(unit: TimeUnit): number
-	get(unit?: TimeUnit): Date | number {
+	get(unit: TimeUnit): number {
 		switch (unit) {
 			case 'millisecond':
 				return this.#date.getMilliseconds()
@@ -63,10 +54,6 @@ export class Chronosis {
 				return this.#date.getMonth()
 			case 'year':
 				return this.#date.getFullYear()
-			case undefined:
-				// If the function is called without a unit, return the internal date.
-				// Could save 4 bytes by leaving this the end of the function
-				return this.#date
 		}
 	}
 
@@ -296,9 +283,9 @@ export class Chronosis {
 							return this.get('hour') < 12 ? 'am' : 'pm'
 						case 'A':
 							return this.get('hour') < 12 ? 'AM' : 'PM'
-						default:
-							return match
 					}
+
+					return match
 				})
 		)
 	}
@@ -326,6 +313,16 @@ export class Chronosis {
 		return this.toString() !== 'Invalid Date'
 	}
 
+	/**
+	 * Returns a copy of the contained date.
+	 *
+	 * ```ts
+	 * new Chronosis().toDate() // Same as new Date()
+	 * ```
+	 */
+	toDate(): Date {
+		return new Date(this.#date)
+	}
 	/**
 	 * Calls the contained date's `toUTCString` method.
 	 *

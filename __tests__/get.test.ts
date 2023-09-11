@@ -5,11 +5,6 @@ beforeAll(() => {
 	setSystemTime(new Date(2020, 5, 15, 11, 29, 29, 499))
 })
 
-test('no arg', () => {
-	const chrono = new Chronosis()
-
-	expect(chrono.get()).toEqual(new Date())
-})
 test('millisecond', () => {
 	const chrono = new Chronosis()
 
