@@ -1,5 +1,18 @@
 # chronosis
 
+## 0.1.0
+
+### Minor Changes
+
+- b3ca854: BREAKING: All `Chronosis` objects are now immutable.
+
+### Patch Changes
+
+- d3cb0d4: `add` and `subtract` now use milliseconds as a default unit.
+- 3c9978d: Invalid set values are no longer discarded. Beware!
+- e0f7084: BREAKING: Implement `toDate`, remove `get()` (`get` with no arg).
+- b6b0a08: BREAKING: Remove `set(datelike)` pattern, now useless due to immutablity.
+
 ## 0.0.3
 
 ### Patch Changes
