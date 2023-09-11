@@ -2,4 +2,4 @@
 'chronosis': minor
 ---
 
-All `Chronosis` objects are now immutable
+BREAKING: All `Chronosis` objects are now immutable.

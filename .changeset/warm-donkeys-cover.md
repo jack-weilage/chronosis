@@ -2,4 +2,4 @@
 'chronosis': patch
 ---
 
-Remove `set(datelike)` pattern, now useless due to immutablity..
+BREAKING: Remove `set(datelike)` pattern, now useless due to immutablity.
