@@ -1,10 +1,10 @@
+# TODO: Bun causes weird errors in build
 name: Deploy to Github Pages
 
 on:
   push:
     branches:
       - main
-      - docs
     paths:
       - '.github/workflows/deploy.yml'
       - 'docs/**'
