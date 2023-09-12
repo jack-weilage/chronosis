@@ -24,17 +24,18 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
-      - uses: oven-sh/setup-bun@v1
+      - uses: actions/setup-node@v3
         with:
-          bun-version: '1.0.0'
+          node-version: 20
+          cache: pnpm
 
       - name: Install dependencies
-        run: bun install
+        run: pnpm install
 
       - uses: actions/configure-pages@v3
 
       - name: Build documentation
-        run: bun run build
+        run: pnpm run build
 
       - uses: actions/upload-pages-artifact@v2
         with:
