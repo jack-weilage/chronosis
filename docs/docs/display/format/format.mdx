@@ -1,0 +1,45 @@
+---
+sidebar_position: 1
+---
+
+import Tabs from '@theme/Tabs'
+import TabItem from '@theme/TabItem'
+import { FormatTable } from './FormatTable.tsx'
+
+# format
+
+```ts
+function format(format_string: string, locale?: string): string
+```
+
+Constructs a formatted date string from `format_string`. To localize the output, pass a locale as the second argument.
+
+:::caution
+Formatting localized strings may be slower than other libraries, as `Chronosis` uses [`Intl.DateTimeFormat`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/DateTimeFormat) for all localizations.
+:::
+
+:::note
+If you are looking for simplified stringification (for use in debugging, etc), see [`toString`](../to-string.md).
+:::
+
+```ts
+const date = new Chronosis('2023-09-12')
+// Returns 'Today is September 12, 2023'.
+const formatted = date.format('[Today is] MMMM D, YYYY')
+```
+
+The table below uses the current date, rendered via `Chronosis`!
+
+<Tabs>
+	<TabItem value="en" label="English" default>
+		<FormatTable locale="en" />
+	</TabItem>
+	<TabItem value="es" label="Español">
+		<FormatTable locale="es" />
+	</TabItem>
+	<TabItem value="ja" label="日本語">
+		<FormatTable locale="ja" />
+	</TabItem>
+</Tabs>
+
+If you can't find a way to display the text you want, either [file an feature request](https://github.com/jack-weilage/chronosis/issues/new/choose) or write your own code using the date returned by [toDate](../to-date.md).
