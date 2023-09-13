@@ -13,6 +13,7 @@
     "url": "https://github.com/jack-weilage/chronosis.git"
   },
   "license": "MIT",
+  "sideEffects": false,
   "type": "module",
   "module": "./lib/index.js",
   "types": "./lib/index.d.ts",
@@ -41,4 +42,3 @@
     "typescript": "^5.2.2"
   }
 }
-

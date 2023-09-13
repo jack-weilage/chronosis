@@ -1,4 +1,5 @@
 {
+	"exclude": ["docs/**", "**/node_modules/**"],
 	"compilerOptions": {
 		"lib": ["ESNext"],
 		"module": "esnext",
