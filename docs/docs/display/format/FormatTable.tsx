@@ -1,3 +1,4 @@
+//@ts-expect-error: Chronosis is an ESM package, but docusaurus is CJS.
 import { Chronosis } from 'chronosis'
 import React, { useEffect, useState } from 'react'
 import { TableRow } from './TableRow'
