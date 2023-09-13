@@ -1,0 +1,25 @@
+name: Build Size
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build-size:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+      - uses: oven-sh/setup-bun@v1
+
+      - name: Install dependencies
+        run: bun install
+
+      - name: Track build size changes
+        uses: preactjs/compressed-size-action@v2
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          clean-script: clean
+          compression: gzip
+          pattern: './lib/index.js'
