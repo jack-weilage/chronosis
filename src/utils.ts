@@ -14,3 +14,16 @@ export const FORMAT_REGEX =
 
 export const pad_to_digits = (n: number, pad = 2) =>
 	n.toString().padStart(pad, '0')
+
+type DateGetters<T = keyof Date> = T extends `${'get'}${infer N}` ? N : never
+type DateSetters<T = keyof Date> = T extends `${'set'}${infer N}` ? N : never
+
+export const TIME_UNIT_TO_DATE_FUNC = {
+	millisecond: 'Milliseconds',
+	second: 'Seconds',
+	minute: 'Minutes',
+	hour: 'Hours',
+	day: 'Date',
+	month: 'Month',
+	year: 'FullYear',
+} as Record<TimeUnit, Extract<DateGetters, DateSetters>>

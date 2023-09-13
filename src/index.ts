@@ -1,5 +1,5 @@
 import type { DateLike, TimeUnit } from './utils.ts'
-import { FORMAT_REGEX, pad_to_digits } from './utils.ts'
+import { FORMAT_REGEX, TIME_UNIT_TO_DATE_FUNC, pad_to_digits } from './utils.ts'
 
 /**
  * The basic class used to construct a Chronosis object.
@@ -39,22 +39,7 @@ export class Chronosis {
 	 * ```
 	 */
 	get(unit: TimeUnit): number {
-		switch (unit) {
-			case 'millisecond':
-				return this.#date.getMilliseconds()
-			case 'second':
-				return this.#date.getSeconds()
-			case 'minute':
-				return this.#date.getMinutes()
-			case 'hour':
-				return this.#date.getHours()
-			case 'day':
-				return this.#date.getDate()
-			case 'month':
-				return this.#date.getMonth()
-			case 'year':
-				return this.#date.getFullYear()
-		}
+		return this.#date[`get${TIME_UNIT_TO_DATE_FUNC[unit]}`]()
 	}
 
 	/**
@@ -67,33 +52,8 @@ export class Chronosis {
 	 * ```
 	 */
 	set(unit: TimeUnit, value: number): Chronosis {
-		//TODO: This could be refactored with a TimeUnit - fn name map
-		// Would be smaller, but slightly slower.
-
-		let clone = new Date(this.#date)
-		switch (unit) {
-			case 'millisecond':
-				clone.setMilliseconds(value as number)
-				break
-			case 'second':
-				clone.setSeconds(value as number)
-				break
-			case 'minute':
-				clone.setMinutes(value as number)
-				break
-			case 'hour':
-				clone.setHours(value as number)
-				break
-			case 'day':
-				clone.setDate(value as number)
-				break
-			case 'month':
-				clone.setMonth(value as number)
-				break
-			case 'year':
-				clone.setFullYear(value as number)
-				break
-		}
+		const clone = new Date(this.#date)
+		clone[`set${TIME_UNIT_TO_DATE_FUNC[unit]}`](value)
 
 		return new Chronosis(clone)
 	}
@@ -295,7 +255,7 @@ export class Chronosis {
 	 *
 	 * ```ts
 	 * const base = new Chronosis()
-	 * const clone = chrono.clone() // Represents the exact same date
+	 * const clone = base.clone() // Represents the exact same date
 	 * ```
 	 */
 	clone(): Chronosis {
@@ -324,7 +284,7 @@ export class Chronosis {
 		return new Date(this.#date)
 	}
 	/**
-	 * Calls the contained date's `toUTCString` method.
+	 * Calls the contained date's `toString` method.
 	 *
 	 * If you want more advanced stringification, check out {@link format()}.
 	 */
