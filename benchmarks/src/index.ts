@@ -331,7 +331,7 @@ group(`toDate ${ITERATIONS}x`, () => {
 
 	bench('chronosis', () => {
 		for (let i = 0; i < ITERATIONS; i++) {
-			chronosis.get()
+			chronosis.toDate()
 		}
 	})
 	bench('chronosis (latest)', () => {
