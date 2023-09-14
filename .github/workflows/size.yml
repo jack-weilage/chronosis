@@ -21,4 +21,4 @@ jobs:
         with:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
           compression: gzip
-          pattern: './lib/index.js'
+          pattern: './lib/index.{js,cjs}'
