@@ -15,6 +15,7 @@
   "license": "MIT",
   "sideEffects": false,
   "type": "module",
+  "main": "./lib/index.cjs",
   "module": "./lib/index.js",
   "types": "./lib/index.d.ts",
   "files": [
@@ -22,7 +23,7 @@
   ],
   "scripts": {
     "build": "bun build:code && bun build:types",
-    "build:code": "bun build --minify --outdir=lib ./src/index.ts",
+    "build:code": "bun build --minify --outdir=lib ./src/index.ts && bun run ./scripts/convert.ts",
     "build:types": "dts-bundle-generator --export-referenced-types false -o ./lib/index.d.ts ./src/index.ts",
     "format": "prettier --cache --ignore-path .gitignore --write .",
     "lint": "prettier --cache --ignore-path .gitignore --check . && tsc",
