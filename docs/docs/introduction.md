@@ -26,3 +26,7 @@ import { Chronosis } from 'chronosis'
 
 const now = new Chronosis()
 ```
+
+:::note
+Documentation will be in ESM module format, but `Chronosis` supports CJS as well!
+:::
