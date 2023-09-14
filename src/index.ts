@@ -17,6 +17,8 @@ export class Chronosis {
 	 * ```ts
 	 * new Chronosis() // Represents Date.now()
 	 * ```
+	 *
+	 * [Link to documentation](https://chronosis.js.org/utility/constructor)
 	 */
 	constructor()
 	/**
@@ -25,10 +27,41 @@ export class Chronosis {
 	 * ```ts
 	 * new Chronosis(new Date(2020, 5, 15)) // Represents June 15th, 2020
 	 * ```
+	 *
+	 * [Link to documentation](https://chronosis.js.org/utility/constructor)
 	 */
 	constructor(datelike: DateLike)
 	constructor(datelike?: DateLike) {
 		this.#date = datelike !== undefined ? new Date(datelike) : new Date()
+	}
+
+	/**
+	 * Creates a clone from a Chronosis object.
+	 *
+	 * If you need simpler stringification, see {@link toString()}
+	 *
+	 * ```ts
+	 * const base = new Chronosis()
+	 * const clone = base.clone() // Represents the exact same date
+	 * ```
+	 *
+	 * [Link to documentation](https://chronosis.js.org/utility/clone)
+	 */
+	clone(): Chronosis {
+		return new Chronosis(this.#date)
+	}
+
+	/**
+	 * Checks if the contained date is valid.
+	 *
+	 * ```ts
+	 * new Chronosis('not a date').isValid() // false
+	 * ```
+	 *
+	 * [Link to documentation](https://chronosis.js.org/utility/is-valid)
+	 */
+	isValid(): boolean {
+		return this.toString() !== 'Invalid Date'
 	}
 
 	/**
@@ -37,6 +70,8 @@ export class Chronosis {
 	 * ```ts
 	 * new Chronosis().get('year') // Get the current year.
 	 * ```
+	 *
+	 * [Link to documentation](https://chronosis.js.org/manipulation/get)
 	 */
 	get(unit: TimeUnit): number {
 		return this.#date[`get${TIME_UNIT_TO_DATE_FUNC[unit]}`]()
@@ -50,6 +85,8 @@ export class Chronosis {
 	 * ```ts
 	 * new Chronosis().set('hour', 5) // Sets the hour to 5 AM
 	 * ```
+	 *
+	 * [Link to documentation](https://chronosis.js.org/manipulation/set)
 	 */
 	set(unit: TimeUnit, value: number): Chronosis {
 		const clone = new Date(this.#date)
@@ -66,6 +103,8 @@ export class Chronosis {
 	 * ```ts
 	 * new Chronosis().add(2500) // Adds 2,500 milliseconds to the current date
 	 * ```
+	 *
+	 * [Link to documentation](https://chronosis.js.org/manipulation/add)
 	 */
 	add(ms: number): Chronosis
 	/**
@@ -76,6 +115,8 @@ export class Chronosis {
 	 * ```ts
 	 * new Chronosis().add(15, 'day') // Adds 15 days to the current date
 	 * ```
+	 *
+	 * [Link to documentation](https://chronosis.js.org/manipulation/add)
 	 */
 	add(count: number, unit: TimeUnit): Chronosis
 	add(count: number, unit: TimeUnit = 'millisecond'): Chronosis {
@@ -90,6 +131,8 @@ export class Chronosis {
 	 * ```ts
 	 * new Chronosis().subtract(2000) // Subtracts 2,000 milliseconds from the current date
 	 * ```
+	 *
+	 * [Link to documentation](https://chronosis.js.org/manipulation/subtract)
 	 */
 	subtract(ms: number): Chronosis
 	/**
@@ -100,6 +143,8 @@ export class Chronosis {
 	 * ```ts
 	 * new Chronosis().subtract(2, 'year') // Subtracts 2 years from the current date
 	 * ```
+	 *
+	 * [Link to documentation](https://chronosis.js.org/manipulation/subtract)
 	 */
 	subtract(count: number, unit: TimeUnit): Chronosis
 	subtract(count: number, unit: TimeUnit = 'millisecond'): Chronosis {
@@ -112,6 +157,8 @@ export class Chronosis {
 	 * ```ts
 	 * new Chronosis().startOf('year') // Sets the date to the start of the year
 	 * ```
+	 *
+	 * [Link to documentation](https://chronosis.js.org/manipulation/start-of)
 	 */
 	startOf(unit: Exclude<TimeUnit, 'millisecond'>): Chronosis {
 		let clone = this.clone()
@@ -143,6 +190,8 @@ export class Chronosis {
 	 * ```ts
 	 * new Chronosis().endOf('month') // Sets the date to the end of the month
 	 * ```
+	 *
+	 * [Link to documentation](https://chronosis.js.org/manipulation/end-of)
 	 */
 	endOf(unit: Exclude<TimeUnit, 'millisecond'>): Chronosis {
 		let clone = this.clone()
@@ -172,14 +221,12 @@ export class Chronosis {
 	/**
 	 * Constructs a formatted date string from an input string.
 	 *
-	 * To escape characters, wrap them in square brackets, like '[escaped text] YYYY'.
-	 *
-	 * For more information on what tokens are available, see [dayjs's website](https://day.js.org/docs/en/display/format).
-	 *
 	 * ```ts
 	 * new Chronosis('01/26/2024').format("[Today:] MMMM D, YYYY") // 'Today: January 26, 2024'
 	 *
 	 * ```
+	 *
+	 * [Link to documentation](https://chronosis.js.org/display/format)
 	 */
 	format(format_string: string, locale?: string): string {
 		return (
@@ -251,34 +298,13 @@ export class Chronosis {
 	}
 
 	/**
-	 * Creates a clone from a Chronosis object.
-	 *
-	 * ```ts
-	 * const base = new Chronosis()
-	 * const clone = base.clone() // Represents the exact same date
-	 * ```
-	 */
-	clone(): Chronosis {
-		return new Chronosis(this.#date)
-	}
-
-	/**
-	 * Checks if the contained date is valid.
-	 *
-	 * ```ts
-	 * new Chronosis('not a date').isValid() // false
-	 * ```
-	 */
-	isValid(): boolean {
-		return this.toString() !== 'Invalid Date'
-	}
-
-	/**
 	 * Returns a copy of the contained date.
 	 *
 	 * ```ts
 	 * new Chronosis().toDate() // Same as new Date()
 	 * ```
+	 *
+	 * [Link to documentation](https://chronosis.js.org/display/to-date)
 	 */
 	toDate(): Date {
 		return new Date(this.#date)
@@ -286,7 +312,9 @@ export class Chronosis {
 	/**
 	 * Calls the contained date's `toString` method.
 	 *
-	 * If you want more advanced stringification, check out {@link format()}.
+	 * If you need more advanced stringification, see {@link format()}.
+	 *
+	 * [Link to documentation](https://chronosis.js.org/display/to-string)
 	 */
 	toString(): string {
 		//PERF: Slower than `toUTCString`
@@ -299,6 +327,8 @@ export class Chronosis {
 	 * ```ts
 	 * const ms = new Chronosis().valueOf() // or `+new Chronosis()`
 	 * ```
+	 *
+	 * [Link to documentation](https://chronosis.js.org/display/value-of)
 	 */
 	valueOf(): number {
 		return this.#date.valueOf()
