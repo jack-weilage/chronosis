@@ -1,6 +1,6 @@
 <div align="center">
 	<br>
-	<img width="35%" src=".github/assets/logo.png">
+	<a href="https://chronosis.js.org/"><img width="35%" src=".github/assets/logo.png"></a>
 
 [![Downloads per month](https://img.shields.io/npm/dm/chronosis?logo=npm&cacheSeconds=60000)](https://www.npmjs.com/package/chronosis)
 [![npm package minimized gzipped size (select exports)](https://img.shields.io/bundlejs/size/chronosis?exports=Chronosis&cacheSeconds=600)](https://bundlephobia.com/package/chronosis)
@@ -27,7 +27,7 @@
 
 To install, use your preferred package manager to download `chronosis`.
 
-```sh
+```bash
 npm install chronosis
 ```
 
@@ -56,6 +56,8 @@ const noon_tomorrow = now.add(1, 'day').set('hour', 11).startOf('hour')
 console.log(noon_tomorrow.format('dddd, MMMM D, YYYY', 'es-MX'))
 // Logs something like 'sábado, septiembre 9, 2023'
 ```
+
+For more detailed information and documentation, see [chronosis.js.org](https://chronosis.js.org).
 
 ## Examples
 
