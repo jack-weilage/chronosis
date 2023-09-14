@@ -1,5 +1,12 @@
 # chronosis
 
+## 0.1.1
+
+### Patch Changes
+
+- 8689bd0: `get` and `set` now use a map to improve compression.
+- a692689: `Chronosis` now supports CJS imports (`require()`).
+
 ## 0.1.0
 
 ### Minor Changes
