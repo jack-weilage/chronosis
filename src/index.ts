@@ -115,7 +115,7 @@ export class Chronosis {
 		*/
 
 		return new Chronosis(
-			new Date(this.#date)[`set${TIME_UNIT_TO_DATE_FUNC[unit]}`]?.(
+			this.clone().#date[`set${TIME_UNIT_TO_DATE_FUNC[unit]}`]?.(
 				typeof value === 'number' ? value : ('a' as unknown as number),
 			) ?? '',
 		)
