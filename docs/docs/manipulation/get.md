@@ -19,3 +19,11 @@ const month = now.get('month')
 :::note
 If you need a way to retrive the name of a unit (e.g. July or Monday), see [`format`](../display/format/format.mdx).
 :::
+
+## Edge Cases
+
+If `unit` isn't a valid [`TimeUnit`](../utility/types.md#timeunit), this function returns `undefined`.
+
+```ts
+const undef = now.get('invalid')
+```
