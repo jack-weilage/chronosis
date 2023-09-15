@@ -16,6 +16,16 @@ const now = new Chronosis()
 const yesterday = now.subtract(1, 'day')
 ```
 
+## Edge Cases
+
+If `count` isn't a number or `unit` isn't a valid [`TimeUnit`](../utility/types.md#timeunit), this function returns an invalid date.
+
+```ts
+const invalid = now.subtract(1, 'invalid')
+const also_invalid = now.subtract([], 'month')
+const really_invalid = now.subtract([], 'invalid')
+```
+
 If called with a value greater than can fit in the unit (e.g. 130 seconds), the value wraps around to the next unit.
 
 ```ts

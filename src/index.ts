@@ -67,6 +67,8 @@ export class Chronosis {
 	/**
 	 * Returns the value of `unit`.
 	 *
+	 * If `unit` is invalid, returns undefined.
+	 *
 	 * ```ts
 	 * new Chronosis().get('year') // Get the current year.
 	 * ```
@@ -74,13 +76,22 @@ export class Chronosis {
 	 * [Link to documentation](https://chronosis.js.org/manipulation/get)
 	 */
 	get(unit: TimeUnit): number {
-		return this.#date[`get${TIME_UNIT_TO_DATE_FUNC[unit]}`]()
+		/*
+		Mildly horrifying code.
+
+		1. Index to function based on `unit`.
+		2a. If `unit` is invalid, return undefined.
+		2b. If `unit` is valid, return number.
+		*/
+		return this.#date[`get${TIME_UNIT_TO_DATE_FUNC[unit]}`]?.()
 	}
 
 	/**
 	 * Sets `unit` to `value`, returning a new object.
 	 *
 	 * If the value is outside of the possible range, the change propagates to other units (5:75 AM == 6:15 AM).
+	 *
+	 * If `unit` or `value` are invalid, the date becomes invalid.
 	 *
 	 * ```ts
 	 * new Chronosis().set('hour', 5) // Sets the hour to 5 AM
@@ -89,16 +100,33 @@ export class Chronosis {
 	 * [Link to documentation](https://chronosis.js.org/manipulation/set)
 	 */
 	set(unit: TimeUnit, value: number): Chronosis {
-		const clone = new Date(this.#date)
-		clone[`set${TIME_UNIT_TO_DATE_FUNC[unit]}`](value)
+		/*
+		Horrifying code.
 
-		return new Chronosis(clone)
+		1. Copy contained date.
+		2. Index to function based on `unit`.
+
+		3a. If `unit` is valid (indexes date), call function.
+			4a. If value is valid (number), use number.
+			5a. Else, make sure date is invalid.
+		3b. If `unit` is invalid (returns undefined), return string to force invalid date.
+
+		4. Take whatever is returned and make a new object out of it.
+		*/
+
+		return new Chronosis(
+			this.clone().#date[`set${TIME_UNIT_TO_DATE_FUNC[unit]}`]?.(
+				typeof value === 'number' ? value : ('a' as unknown as number),
+			) ?? '',
+		)
 	}
 
 	/**
 	 * Adds `ms` milliseconds to the contained date, returning a new object.
 	 *
 	 * If the resulting value is outside of the possible range, the change propagates to other units (5:30 AM + 50 minutes == 6:20 AM)
+	 *
+	 * If `ms` is invalid, the date becomes invalid.
 	 *
 	 * ```ts
 	 * new Chronosis().add(2500) // Adds 2,500 milliseconds to the current date
@@ -111,6 +139,8 @@ export class Chronosis {
 	 * Adds `count` of `unit` to the contained date, returning a new object.
 	 *
 	 * If the resulting value is outside of the possible range, the change propagates to other units (5:30 AM + 50 minutes == 6:20 AM)
+	 *
+	 * If `count` or `unit` are invalid, the date becomes invalid.
 	 *
 	 * ```ts
 	 * new Chronosis().add(15, 'day') // Adds 15 days to the current date
@@ -128,6 +158,8 @@ export class Chronosis {
 	 *
 	 * If the resulting value is outside of the possible range, the change propagates to other units (5:30 AM - 50 minutes == 4:40 AM)
 	 *
+	 * If `ms` is invalid, the date becomes invalid.
+	 *
 	 * ```ts
 	 * new Chronosis().subtract(2000) // Subtracts 2,000 milliseconds from the current date
 	 * ```
@@ -139,6 +171,8 @@ export class Chronosis {
 	 * Subtracts `count` of `unit` from the contained date, returning a new object.
 	 *
 	 * If the resulting value is outside of the possible range, the change propagates to other units (5:30 AM - 50 minutes == 4:40 AM)
+	 *
+	 * If `count` or `unit` is invalid, the date becomes invalid.
 	 *
 	 * ```ts
 	 * new Chronosis().subtract(2, 'year') // Subtracts 2 years from the current date

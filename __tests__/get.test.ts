@@ -5,6 +5,14 @@ beforeAll(() => {
 	setSystemTime(new Date(2020, 5, 15, 11, 29, 29, 499))
 })
 
+test('invalid unit', () => {
+	const chrono = new Chronosis()
+
+	//@ts-expect-error
+	expect(chrono.get('some string')).toBeUndefined()
+	//@ts-expect-error
+	expect(chrono.get([])).toBeUndefined()
+})
 test('millisecond', () => {
 	const chrono = new Chronosis()
 

@@ -5,7 +5,7 @@ beforeAll(() => {
 	setSystemTime(new Date(2020, 5, 15, 11, 29, 29, 499))
 })
 
-test('no arg', () => {
+test('only value', () => {
 	const chrono = new Chronosis()
 
 	// Within normal range
@@ -25,6 +25,22 @@ test('immutable', () => {
 	first.add(200)
 
 	expect(first.valueOf()).toBe(second.valueOf())
+})
+test('invalid unit', () => {
+	const chrono = new Chronosis()
+
+	//@ts-expect-error
+	expect(chrono.add('not real', 6).isValid()).toBeFalse()
+	//@ts-expect-error
+	expect(chrono.add([], 6).isValid()).toBeFalse()
+})
+test('invalid value', () => {
+	const chrono = new Chronosis()
+
+	//@ts-expect-error
+	expect(chrono.add('day', []).isValid()).toBeFalse()
+	//@ts-expect-error
+	expect(chrono.add('day', 'string').isValid()).toBeFalse()
 })
 test('millisecond', () => {
 	const chrono = new Chronosis()

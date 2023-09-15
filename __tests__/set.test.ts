@@ -13,6 +13,22 @@ test('immutable', () => {
 
 	expect(first.valueOf()).toBe(second.valueOf())
 })
+test('invalid unit', () => {
+	const chrono = new Chronosis()
+
+	//@ts-expect-error
+	expect(chrono.set('not real', 6).isValid()).toBeFalse()
+	//@ts-expect-error
+	expect(chrono.set([], 6).isValid()).toBeFalse()
+})
+test('invalid value', () => {
+	const chrono = new Chronosis()
+
+	//@ts-expect-error
+	expect(chrono.set('day', []).isValid()).toBeFalse()
+	//@ts-expect-error
+	expect(chrono.set('day', 'string').isValid()).toBeFalse()
+})
 test('millisecond', () => {
 	const chrono = new Chronosis()
 

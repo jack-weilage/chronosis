@@ -16,6 +16,16 @@ const now = new Chronosis()
 const now_in_june = now.set('month', 5)
 ```
 
+## Edge Cases
+
+If `unit` isn't a valid [`TimeUnit`](../utility/types.md#timeunit), or `value` isn't a number, this function returns an invalid date.
+
+```ts
+const invalid = now.set('invalid', 4)
+const also_invalid = now.set('month', false)
+const really_invalid = now.set('invalid', {})
+```
+
 If called with a value greater than can fit in the unit (e.g. 130 seconds), the value wraps around to the next unit.
 
 ```ts
