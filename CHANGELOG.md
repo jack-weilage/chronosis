@@ -1,5 +1,17 @@
 # chronosis
 
+## 0.2.0
+
+### Minor Changes
+
+- 4ee5c7a: `get` now returns undefined when its unit is invalid.
+- 4ee5c7a: `set`, `add` and `subtract` now return an invalid date if their value or unit is invalid.
+
+### Patch Changes
+
+- 77ecff3: Significantly optimize performance for `endOf`, `startOf` and `isValid`
+- 518b73e: Fix 12am/12pm being formatted as '0'.
+
 ## 0.1.1
 
 ### Patch Changes
