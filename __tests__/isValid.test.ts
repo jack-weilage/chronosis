@@ -13,12 +13,15 @@ test('valid inputs', () => {
 test('invalid inputs', () => {
 	expect(new Chronosis('invalid string').isValid()).toBeFalse()
 	//@ts-expect-error
-	expect(new Chronosis([2020, 5, 15]).isValid()).toBeFalse()
+	expect(new Chronosis([]).isValid()).toBeFalse()
+	//@ts-expect-error
+	expect(new Chronosis({}).isValid()).toBeFalse()
 })
-//TODO: Should invalid set values actually make the date invalid?
-// test('invalid set values', () => {
-// 	//@ts-expect-error
-// 	expect(new Chronosis().set('day', 'string').isValid()).toBeFalse()
-// 	//@ts-expect-error
-// 	expect(new Chronosis().set('year', [2020]).isValid()).toBeFalse()
-// })
+test('invalid set', () => {
+	//@ts-expect-error
+	expect(new Chronosis().set('day', 'string').isValid()).toBeFalse()
+	//@ts-expect-error
+	expect(new Chronosis().set('year', [2020]).isValid()).toBeFalse()
+	//@ts-expect-error
+	expect(new Chronosis().set('invalid', 10).isValid()).toBeFalse()
+})
