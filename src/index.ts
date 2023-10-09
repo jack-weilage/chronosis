@@ -274,8 +274,6 @@ export class Chronosis {
 						return $1
 					}
 
-					const replaceZeroWithTwelve = (n: number) => (n === 0 ? 12 : n)
-
 					//PERF: Intl.DateTimeFormat is very slow, but very small compared to other solutions.
 					//TODO: Create a cache of already-used DateTimeFormat objects for use later.
 					switch (match) {
@@ -308,9 +306,9 @@ export class Chronosis {
 						case 'HH':
 							return pad_to_digits(this.get('hour'))
 						case 'h':
-							return replaceZeroWithTwelve(this.get('hour') % 12)
+							return this.get('hour') % 12 || 12
 						case 'hh':
-							return pad_to_digits(replaceZeroWithTwelve(this.get('hour') % 12))
+							return pad_to_digits(this.get('hour') % 12 || 12)
 						case 'm':
 							return this.get('minute')
 						case 'mm':
