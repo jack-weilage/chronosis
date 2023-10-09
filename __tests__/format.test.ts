@@ -53,6 +53,9 @@ test('hour', () => {
 	expect(chrono.format('H')).toBe('14')
 	chrono = chrono.set('hour', 2)
 	expect(chrono.format('HH')).toBe('02')
+	chrono = chrono.set('hour', 0)
+	expect(chrono.format('h')).toBe('12')
+	expect(chrono.format('H')).toBe('0')
 })
 test('weekday', () => {
 	const chrono = new Chronosis()

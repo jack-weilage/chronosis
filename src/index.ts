@@ -61,7 +61,8 @@ export class Chronosis {
 	 * [Link to documentation](https://chronosis.js.org/utility/is-valid)
 	 */
 	isValid(): boolean {
-		return this.toString() !== 'Invalid Date'
+		// Global isNaN already coerces to number.
+		return !isNaN(this.#date as unknown as number)
 	}
 
 	/**
@@ -150,6 +151,7 @@ export class Chronosis {
 	 */
 	add(count: number, unit: TimeUnit): Chronosis
 	add(count: number, unit: TimeUnit = 'millisecond'): Chronosis {
+		// TODO(PERF): This could be replaced with adding ms for ms, s, m, h, d.
 		return this.set(unit, this.get(unit) + count)
 	}
 
@@ -182,6 +184,7 @@ export class Chronosis {
 	 */
 	subtract(count: number, unit: TimeUnit): Chronosis
 	subtract(count: number, unit: TimeUnit = 'millisecond'): Chronosis {
+		// TODO(PERF): This could be replaced with subtracting ms for ms, s, m, h, d.
 		return this.set(unit, this.get(unit) - count)
 	}
 
@@ -195,27 +198,25 @@ export class Chronosis {
 	 * [Link to documentation](https://chronosis.js.org/manipulation/start-of)
 	 */
 	startOf(unit: Exclude<TimeUnit, 'millisecond'>): Chronosis {
-		let clone = this.clone()
-
-		// This could be turned into a simple loop...
-		// Unfortunately, this works best with gzip.
+		//PERF: Each `this.get` call is expensive. At ~4 calls, it's faster to just use the raw date.
 		switch (unit) {
 			case 'year':
-				clone = clone.set('month', 0)
+				return new Chronosis(Date.UTC(this.get('year')))
 			case 'month':
-				// The month starts on day 1, not 0
-				clone = clone.set('day', 1)
+				return new Chronosis(Date.UTC(this.get('year'), this.get('month')))
 			case 'day':
-				clone = clone.set('hour', 0)
+				return new Chronosis(
+					Date.UTC(this.get('year'), this.get('month'), this.get('day')),
+				)
 			case 'hour':
-				clone = clone.set('minute', 0)
+				return new Chronosis(this.toDate().setMinutes(0, 0, 0))
 			case 'minute':
-				clone = clone.set('second', 0)
+				return new Chronosis(this.toDate().setSeconds(0, 0))
 			case 'second':
-				clone = clone.set('millisecond', 0)
+				return new Chronosis(this.toDate().setMilliseconds(0))
 		}
 
-		return clone
+		return this
 	}
 
 	/**
@@ -228,28 +229,28 @@ export class Chronosis {
 	 * [Link to documentation](https://chronosis.js.org/manipulation/end-of)
 	 */
 	endOf(unit: Exclude<TimeUnit, 'millisecond'>): Chronosis {
-		let clone = this.clone()
-
-		// This could be turned into a simple loop...
-		// Unfortunately, this works best with gzip.
+		//PERF: Each `this.get` call is expensive. At ~4 calls, it's faster to just use the raw date.
 		switch (unit) {
 			case 'year':
-				clone = clone.set('month', 11)
+				return new Chronosis(Date.UTC(this.get('year') + 1, 0, 1) - 1)
 			case 'month':
-				// We could have a list of month lengths + leap year...
-				// but this solution is short and easily understandable.
-				clone = clone.add(1, 'month').set('day', 0)
+				return new Chronosis(
+					Date.UTC(this.get('year'), this.get('month') + 1, 1) - 1,
+				)
 			case 'day':
-				clone = clone.set('hour', 23)
+				return new Chronosis(
+					Date.UTC(this.get('year'), this.get('month'), this.get('day') + 1) -
+						1,
+				)
 			case 'hour':
-				clone = clone.set('minute', 59)
+				return new Chronosis(this.toDate().setMinutes(59, 59, 999))
 			case 'minute':
-				clone = clone.set('second', 59)
+				return new Chronosis(this.toDate().setSeconds(59, 999))
 			case 'second':
-				clone = clone.set('millisecond', 999)
+				return new Chronosis(this.toDate().setMilliseconds(999))
 		}
 
-		return clone
+		return this
 	}
 
 	/**
@@ -305,9 +306,9 @@ export class Chronosis {
 						case 'HH':
 							return pad_to_digits(this.get('hour'))
 						case 'h':
-							return this.get('hour') % 12
+							return this.get('hour') % 12 || 12
 						case 'hh':
-							return pad_to_digits(this.get('hour') % 12)
+							return pad_to_digits(this.get('hour') % 12 || 12)
 						case 'm':
 							return this.get('minute')
 						case 'mm':
