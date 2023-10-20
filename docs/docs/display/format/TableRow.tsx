@@ -1,7 +1,8 @@
 import type { PropsWithChildren } from 'react'
 
+//@ts-expect-error: Chronosis is an ESM package, but docusaurus is CJS.
 import { Chronosis } from 'chronosis'
-const React = require('react')
+import React from 'react'
 
 interface TableRowProps extends PropsWithChildren {
 	input: string
