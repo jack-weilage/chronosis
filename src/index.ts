@@ -268,10 +268,10 @@ export class Chronosis {
 			format_string
 				// Prevent possible regex DOS due to massive strings
 				.substring(0, 1000)
-				.replace(FORMAT_REGEX, (match, $1) => {
+				.replace(FORMAT_REGEX, (match, escaped_text) => {
 					// If we match the capture pattern '\[(.*)\]' we should break out early.
-					if ($1 !== undefined) {
-						return $1
+					if (escaped_text) {
+						return escaped_text
 					}
 
 					//PERF: Intl.DateTimeFormat is very slow, but very small compared to other solutions.
