@@ -2,17 +2,21 @@
   "name": "benchmarks",
   "type": "module",
   "scripts": {
-    "prebench": "cd .. && bun run build:code && cd benchmarks",
-    "bench": "bun run src/index.ts"
+    "bench": "bun run src/cli.ts",
+    "prepare-bench": "cd .. && bun run build:code && cd benchmarks"
   },
   "devDependencies": {
     "@types/luxon": "^3.3.2",
-    "bun-types": "^1.0.1",
-    "chronosis": "^0.0.3",
-    "dayjs": "^1.11.9",
+    "bun-types": "^1.0.4",
+    "cac": "^6.7.14",
+    "chronosis": "^0.1.1",
+    "date-fns": "^2.30.0",
+    "dayjs": "^1.11.10",
+    "fast-glob": "^3.3.1",
     "luxon": "^3.4.3",
-    "mitata": "^0.1.6",
     "moment": "^2.29.4",
+    "picocolors": "^1.0.0",
+    "string-width": "^6.1.0",
     "typescript": "^5.2.2"
   }
 }
