@@ -30,8 +30,8 @@ jobs:
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git commit -am "Automatically update benchmark dependencies"
-          git push
+          (git commit -am "Automatically update benchmark dependencies") || true
+          (git push) || true
   bench:
     runs-on: ubuntu-latest
     needs: update
