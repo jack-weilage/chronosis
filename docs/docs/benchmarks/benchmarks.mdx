@@ -1,0 +1,20 @@
+---
+sidebar_position: 5
+---
+
+import data from './data.json'
+import BenchmarkList, { generate_toc } from './BenchmarkList.tsx'
+
+export const toc = generate_toc(data)
+
+`Chronosis` is fast. But how fast?
+
+:::note
+`date-fns` is (likely) impossible to beat for some functions. This is mostly due to its modular archetecture, which eliminates the overhead associated with classes. `date-fns` is included in this benchmark suite to show the absolute fastest alternative.
+:::
+
+:::note
+Some benchmarks are extremely close (e.g. `toString` and `valueOf`) and shouldn't be considered statistically important.
+:::
+
+<BenchmarkList data={data} />
