@@ -2,5 +2,6 @@ node_modules/
 lib/
 build/
 .docusaurus/
-# Used to get RTX working with lefthook, not required.
+# Local development files.
 lefthook-local.yml
+.lazy.lua
