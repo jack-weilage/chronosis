@@ -9,11 +9,14 @@ pre-push:
 pre-commit:
   parallel: true
   commands:
-    prettier:
-      glob: '*.{ts,json,md,yml}'
-      run: bun x prettier --cache --write {staged_files} && git add {staged_files}
+    format:
+      glob: "*.{ts,json,md,yml}"
+      run: bunx biome format --write {staged_files} && git add {staged_files}
+    lint:
+      glob: "*.{ts,json}"
+      run: bunx biome check {staged_files}
     test:
       run: bun test --coverage
     tsc:
-      glob: '*.ts'
+      glob: "*.ts"
       run: bun x tsc

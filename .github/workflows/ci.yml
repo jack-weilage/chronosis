@@ -28,4 +28,4 @@ jobs:
         run: bun install && cd benchmarks && bun install && cd ..
 
       - name: Lint codebase
-        run: bun lint
+        run: bunx biome ci .
