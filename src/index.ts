@@ -1,5 +1,5 @@
 import type { DateLike, TimeUnit } from './utils.ts'
-import { FORMAT_REGEX, TIME_UNIT_TO_DATE_FUNC, pad_to_digits } from './utils.ts'
+import { FORMAT_REGEX, TIME_UNIT_TO_DATE_FUNC, padToDigits } from './utils.ts'
 
 /**
  * The basic class used to construct a Chronosis object.
@@ -61,7 +61,7 @@ export class Chronosis {
 	 * [Link to documentation](https://chronosis.js.org/utility/is-valid)
 	 */
 	isValid(): boolean {
-		// Global isNaN already coerces to number.
+		// biome-ignore lint/suspicious/noGlobalIsNan: Global isNaN already coerces to number.
 		return !isNaN(this.#date as unknown as number)
 	}
 
@@ -263,9 +263,9 @@ export class Chronosis {
 	 *
 	 * [Link to documentation](https://chronosis.js.org/display/format)
 	 */
-	format(format_string: string, locale?: string): string {
+	format(formatString: string, locale?: string): string {
 		return (
-			format_string
+			formatString
 				// Prevent possible regex DOS due to massive strings
 				.substring(0, 1000)
 				.replace(FORMAT_REGEX, (match, $1) => {
@@ -278,13 +278,13 @@ export class Chronosis {
 					//TODO: Create a cache of already-used DateTimeFormat objects for use later.
 					switch (match) {
 						case 'YY':
-							return pad_to_digits(this.get('year') % 100)
+							return padToDigits(this.get('year') % 100)
 						case 'YYYY':
 							return this.get('year')
 						case 'M':
 							return this.get('month') + 1
 						case 'MM':
-							return pad_to_digits(this.get('month') + 1)
+							return padToDigits(this.get('month') + 1)
 						case 'MMM':
 							return this.#date.toLocaleString(locale, { month: 'short' })
 						case 'MMMM':
@@ -292,7 +292,7 @@ export class Chronosis {
 						case 'D':
 							return this.get('day')
 						case 'DD':
-							return pad_to_digits(this.get('day'))
+							return padToDigits(this.get('day'))
 						case 'd':
 							return this.#date.getDay()
 						case 'dd':
@@ -304,23 +304,23 @@ export class Chronosis {
 						case 'H':
 							return this.get('hour')
 						case 'HH':
-							return pad_to_digits(this.get('hour'))
+							return padToDigits(this.get('hour'))
 						case 'h':
 							return this.get('hour') % 12 || 12
 						case 'hh':
-							return pad_to_digits(this.get('hour') % 12 || 12)
+							return padToDigits(this.get('hour') % 12 || 12)
 						case 'm':
 							return this.get('minute')
 						case 'mm':
-							return pad_to_digits(this.get('minute'))
+							return padToDigits(this.get('minute'))
 						case 's':
 							return this.get('second')
 						case 'ss':
-							return pad_to_digits(this.get('second'))
+							return padToDigits(this.get('second'))
 						case 'SSS':
-							return pad_to_digits(this.get('millisecond'), 3)
+							return padToDigits(this.get('millisecond'), 3)
 						case 'Z':
-							return `+${pad_to_digits(this.#date.getTimezoneOffset() / 60)}:00`
+							return `+${padToDigits(this.#date.getTimezoneOffset() / 60)}:00`
 						case 'a':
 							return this.get('hour') < 12 ? 'am' : 'pm'
 						case 'A':

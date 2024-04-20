@@ -9,10 +9,10 @@ import { FormatTable } from './FormatTable.tsx'
 # format
 
 ```ts
-function format(format_string: string, locale?: string): string
+function format(formatString: string, locale?: string): string
 ```
 
-Constructs a formatted date string from `format_string`. To localize the output, pass a locale as the second argument.
+Constructs a formatted date string from `formatString`. To localize the output, pass a locale as the second argument.
 
 :::caution
 Formatting localized strings may be slower than other libraries, as `Chronosis` uses [`Intl.DateTimeFormat`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/DateTimeFormat) for all localizations.
