@@ -3,6 +3,7 @@
   "version": "0.2.0",
   "description": "An extremely lightweight, modern date management library",
   "keywords": ["date", "time", "chronosis", "typescript"],
+  "workspaces": ["benchmarks", "docs"],
   "repository": {
     "type": "git",
     "url": "https://github.com/jack-weilage/chronosis.git"
