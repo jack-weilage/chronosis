@@ -1,5 +1,6 @@
 {
   "name": "benchmarks",
+  "private": true,
   "type": "module",
   "scripts": {
     "prebench": "cd .. && bun run build:code && cd benchmarks",
