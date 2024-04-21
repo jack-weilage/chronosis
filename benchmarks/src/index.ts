@@ -7,25 +7,35 @@ import { DateTime } from 'luxon'
 import moment from 'moment'
 import { Chronosis as ChronosisLatest } from '../../src/index.ts'
 
-const ITERATIONS = parseInt(process.argv[2]) || 10000
+const ITERATIONS = Number.parseInt(process.argv[2]) || 10000
 
-const init_dates = () => ({
+const initDates = () => ({
 	chronosis: new Chronosis(),
-	chronosis_latest: new ChronosisLatest(),
+	chronosisLatest: new ChronosisLatest(),
 	dayjs: dayjs(),
 	luxon: DateTime.local(),
 	moment: moment(),
 })
 
+// biome-ignore lint/suspicious/noEmptyBlockStatements: Hack to 'warmup'
 bench('JIT warmup', () => {})
+// biome-ignore lint/suspicious/noEmptyBlockStatements: Hack to 'warmup'
 bench('JIT warmup', () => {})
+// biome-ignore lint/suspicious/noEmptyBlockStatements: Hack to 'warmup'
 bench('JIT warmup', () => {})
+// biome-ignore lint/suspicious/noEmptyBlockStatements: Hack to 'warmup'
 bench('JIT warmup', () => {})
+// biome-ignore lint/suspicious/noEmptyBlockStatements: Hack to 'warmup'
 bench('JIT warmup', () => {})
+// biome-ignore lint/suspicious/noEmptyBlockStatements: Hack to 'warmup'
 bench('JIT warmup', () => {})
+// biome-ignore lint/suspicious/noEmptyBlockStatements: Hack to 'warmup'
 bench('JIT warmup', () => {})
+// biome-ignore lint/suspicious/noEmptyBlockStatements: Hack to 'warmup'
 bench('JIT warmup', () => {})
+// biome-ignore lint/suspicious/noEmptyBlockStatements: Hack to 'warmup'
 bench('JIT warmup', () => {})
+// biome-ignore lint/suspicious/noEmptyBlockStatements: Hack to 'warmup'
 bench('JIT warmup', () => {})
 
 group(`create ${ITERATIONS}x instances`, () => {
@@ -57,7 +67,7 @@ group(`create ${ITERATIONS}x instances`, () => {
 })
 
 group(`add ${ITERATIONS}x`, () => {
-	const { chronosis, chronosis_latest, dayjs, luxon, moment } = init_dates()
+	const { chronosis, chronosisLatest, dayjs, luxon, moment } = initDates()
 
 	bench('chronosis', () => {
 		for (let i = 0; i < ITERATIONS; i++) {
@@ -66,7 +76,7 @@ group(`add ${ITERATIONS}x`, () => {
 	})
 	bench('chronosis (latest)', () => {
 		for (let i = 0; i < ITERATIONS; i++) {
-			chronosis_latest.add(1, 'year').add(2, 'month').add(5, 'day')
+			chronosisLatest.add(1, 'year').add(2, 'month').add(5, 'day')
 		}
 	})
 	bench('dayjs', () => {
@@ -86,7 +96,7 @@ group(`add ${ITERATIONS}x`, () => {
 	})
 })
 group(`subtract ${ITERATIONS}x`, () => {
-	const { chronosis, chronosis_latest, dayjs, luxon, moment } = init_dates()
+	const { chronosis, chronosisLatest, dayjs, luxon, moment } = initDates()
 
 	bench('chronosis', () => {
 		for (let i = 0; i < ITERATIONS; i++) {
@@ -95,7 +105,7 @@ group(`subtract ${ITERATIONS}x`, () => {
 	})
 	bench('chronosis (latest)', () => {
 		for (let i = 0; i < ITERATIONS; i++) {
-			chronosis_latest.subtract(1, 'year').add(2, 'month').subtract(5, 'day')
+			chronosisLatest.subtract(1, 'year').add(2, 'month').subtract(5, 'day')
 		}
 	})
 	bench('dayjs', () => {
@@ -116,7 +126,7 @@ group(`subtract ${ITERATIONS}x`, () => {
 })
 
 group(`get ${ITERATIONS}x`, () => {
-	const { chronosis, chronosis_latest, dayjs, luxon, moment } = init_dates()
+	const { chronosis, chronosisLatest, dayjs, luxon, moment } = initDates()
 
 	bench('chronosis', () => {
 		for (let i = 0; i < ITERATIONS; i++) {
@@ -125,7 +135,7 @@ group(`get ${ITERATIONS}x`, () => {
 	})
 	bench('chronosis (latest)', () => {
 		for (let i = 0; i < ITERATIONS; i++) {
-			chronosis_latest.get('month')
+			chronosisLatest.get('month')
 		}
 	})
 	bench('dayjs', () => {
@@ -145,7 +155,7 @@ group(`get ${ITERATIONS}x`, () => {
 	})
 })
 group(`set ${ITERATIONS}x`, () => {
-	const { chronosis, chronosis_latest, dayjs, luxon, moment } = init_dates()
+	const { chronosis, chronosisLatest, dayjs, luxon, moment } = initDates()
 
 	bench('chronosis', () => {
 		for (let i = 0; i < ITERATIONS; i++) {
@@ -154,7 +164,7 @@ group(`set ${ITERATIONS}x`, () => {
 	})
 	bench('chronosis (latest)', () => {
 		for (let i = 0; i < ITERATIONS; i++) {
-			chronosis_latest.set('month', 4)
+			chronosisLatest.set('month', 4)
 		}
 	})
 	bench('dayjs', () => {
@@ -175,10 +185,10 @@ group(`set ${ITERATIONS}x`, () => {
 })
 
 group(`compare ${ITERATIONS}x`, () => {
-	const { chronosis, chronosis_latest, dayjs, luxon, moment } = init_dates()
+	const { chronosis, chronosisLatest, dayjs, luxon, moment } = initDates()
 
 	const date = new Date()
-	const diff_datetime = DateTime.fromJSDate(date)
+	const diffDatetime = DateTime.fromJSDate(date)
 	bench('chronosis', () => {
 		for (let i = 0; i < ITERATIONS; i++) {
 			;+chronosis < +date
@@ -186,7 +196,7 @@ group(`compare ${ITERATIONS}x`, () => {
 	})
 	bench('chronosis (latest)', () => {
 		for (let i = 0; i < ITERATIONS; i++) {
-			;+chronosis_latest < +date
+			;+chronosisLatest < +date
 		}
 	})
 	bench('dayjs', () => {
@@ -196,7 +206,7 @@ group(`compare ${ITERATIONS}x`, () => {
 	})
 	bench('luxon', () => {
 		for (let i = 0; i < ITERATIONS; i++) {
-			luxon.diff(diff_datetime)
+			luxon.diff(diffDatetime)
 		}
 	})
 	bench('moment', () => {
@@ -207,7 +217,7 @@ group(`compare ${ITERATIONS}x`, () => {
 })
 
 group(`simple format date ${ITERATIONS}x`, () => {
-	const { chronosis, chronosis_latest, dayjs, luxon, moment } = init_dates()
+	const { chronosis, chronosisLatest, dayjs, luxon, moment } = initDates()
 
 	bench('chronosis', () => {
 		for (let i = 0; i < ITERATIONS; i++) {
@@ -216,7 +226,7 @@ group(`simple format date ${ITERATIONS}x`, () => {
 	})
 	bench('chronosis (latest)', () => {
 		for (let i = 0; i < ITERATIONS; i++) {
-			chronosis_latest.format('MM/DD/YYYY HH:mm:ss')
+			chronosisLatest.format('MM/DD/YYYY HH:mm:ss')
 		}
 	})
 	bench('dayjs', () => {
@@ -269,7 +279,7 @@ group(`complex format date ${ITERATIONS}x`, () => {
 */
 
 group(`toString ${ITERATIONS}x`, () => {
-	const { chronosis, chronosis_latest, dayjs, luxon, moment } = init_dates()
+	const { chronosis, chronosisLatest, dayjs, luxon, moment } = initDates()
 
 	bench('chronosis', () => {
 		for (let i = 0; i < ITERATIONS; i++) {
@@ -278,7 +288,7 @@ group(`toString ${ITERATIONS}x`, () => {
 	})
 	bench('chronosis (latest)', () => {
 		for (let i = 0; i < ITERATIONS; i++) {
-			chronosis_latest.toString()
+			chronosisLatest.toString()
 		}
 	})
 	bench('dayjs', () => {
@@ -298,7 +308,7 @@ group(`toString ${ITERATIONS}x`, () => {
 	})
 })
 group(`valueOf ${ITERATIONS}x`, () => {
-	const { chronosis, chronosis_latest, dayjs, luxon, moment } = init_dates()
+	const { chronosis, chronosisLatest, dayjs, luxon, moment } = initDates()
 
 	bench('chronosis', () => {
 		for (let i = 0; i < ITERATIONS; i++) {
@@ -307,7 +317,7 @@ group(`valueOf ${ITERATIONS}x`, () => {
 	})
 	bench('chronosis (latest)', () => {
 		for (let i = 0; i < ITERATIONS; i++) {
-			chronosis_latest.valueOf()
+			chronosisLatest.valueOf()
 		}
 	})
 	bench('dayjs', () => {
@@ -327,16 +337,17 @@ group(`valueOf ${ITERATIONS}x`, () => {
 	})
 })
 group(`toDate ${ITERATIONS}x`, () => {
-	const { chronosis, chronosis_latest, dayjs, luxon, moment } = init_dates()
+	const { chronosis, chronosisLatest, dayjs, luxon, moment } = initDates()
 
 	bench('chronosis', () => {
 		for (let i = 0; i < ITERATIONS; i++) {
+			// @ts-expect-error: Doesn't exist?
 			chronosis.toDate()
 		}
 	})
 	bench('chronosis (latest)', () => {
 		for (let i = 0; i < ITERATIONS; i++) {
-			chronosis_latest.toDate()
+			chronosisLatest.toDate()
 		}
 	})
 	bench('dayjs', () => {
@@ -357,7 +368,7 @@ group(`toDate ${ITERATIONS}x`, () => {
 })
 
 group(`clone ${ITERATIONS}x`, () => {
-	const { chronosis, chronosis_latest, dayjs, luxon, moment } = init_dates()
+	const { chronosis, chronosisLatest, dayjs, luxon, moment } = initDates()
 
 	bench('chronosis', () => {
 		for (let i = 0; i < ITERATIONS; i++) {
@@ -366,7 +377,7 @@ group(`clone ${ITERATIONS}x`, () => {
 	})
 	bench('chronosis (latest)', () => {
 		for (let i = 0; i < ITERATIONS; i++) {
-			chronosis_latest.clone()
+			chronosisLatest.clone()
 		}
 	})
 	bench('dayjs', () => {

@@ -38,14 +38,14 @@ test('millisecond', () => {
 	expect(normal.get('second')).toBe(29)
 
 	// Negative, should wrap back
-	const wrap_back = chrono.set('millisecond', -500)
-	expect(wrap_back.get('millisecond')).toBe(500)
-	expect(wrap_back.get('second')).toBe(28)
+	const wrapBack = chrono.set('millisecond', -500)
+	expect(wrapBack.get('millisecond')).toBe(500)
+	expect(wrapBack.get('second')).toBe(28)
 
 	// Positive, should wrap forward
-	const wrap_forward = chrono.set('millisecond', 2500)
-	expect(wrap_forward.get('millisecond')).toBe(500)
-	expect(wrap_forward.get('second')).toBe(31)
+	const wrapForward = chrono.set('millisecond', 2500)
+	expect(wrapForward.get('millisecond')).toBe(500)
+	expect(wrapForward.get('second')).toBe(31)
 })
 test('second', () => {
 	const chrono = new Chronosis()
@@ -56,14 +56,14 @@ test('second', () => {
 	expect(normal.get('minute')).toBe(29)
 
 	// Negative, should wrap back
-	const wrap_back = chrono.set('second', -25)
-	expect(wrap_back.get('second')).toBe(35)
-	expect(wrap_back.get('minute')).toBe(28)
+	const wrapBack = chrono.set('second', -25)
+	expect(wrapBack.get('second')).toBe(35)
+	expect(wrapBack.get('minute')).toBe(28)
 
 	// Positive, should wrap forward
-	const wrap_forward = chrono.set('second', 80)
-	expect(wrap_forward.get('second')).toBe(20)
-	expect(wrap_forward.get('minute')).toBe(30)
+	const wrapForward = chrono.set('second', 80)
+	expect(wrapForward.get('second')).toBe(20)
+	expect(wrapForward.get('minute')).toBe(30)
 })
 test('minute', () => {
 	const chrono = new Chronosis()
@@ -74,14 +74,14 @@ test('minute', () => {
 	expect(normal.get('hour')).toBe(11)
 
 	// Negative, should wrap back
-	const wrap_back = chrono.set('minute', -25)
-	expect(wrap_back.get('minute')).toBe(35)
-	expect(wrap_back.get('hour')).toBe(10)
+	const wrapBack = chrono.set('minute', -25)
+	expect(wrapBack.get('minute')).toBe(35)
+	expect(wrapBack.get('hour')).toBe(10)
 
 	// Positive, should wrap forward
-	const wrap_forward = chrono.set('minute', 80)
-	expect(wrap_forward.get('minute')).toBe(20)
-	expect(wrap_forward.get('hour')).toBe(12)
+	const wrapForward = chrono.set('minute', 80)
+	expect(wrapForward.get('minute')).toBe(20)
+	expect(wrapForward.get('hour')).toBe(12)
 })
 test('hour', () => {
 	const chrono = new Chronosis()
@@ -92,14 +92,14 @@ test('hour', () => {
 	expect(normal.get('day')).toBe(15)
 
 	// Negative, should wrap back
-	const wrap_back = chrono.set('hour', -8)
-	expect(wrap_back.get('hour')).toBe(16)
-	expect(wrap_back.get('day')).toBe(14)
+	const wrapBack = chrono.set('hour', -8)
+	expect(wrapBack.get('hour')).toBe(16)
+	expect(wrapBack.get('day')).toBe(14)
 
 	// Positive, should wrap forward
-	const wrap_forward = chrono.set('hour', 35)
-	expect(wrap_forward.get('hour')).toBe(11)
-	expect(wrap_forward.get('day')).toBe(16)
+	const wrapForward = chrono.set('hour', 35)
+	expect(wrapForward.get('hour')).toBe(11)
+	expect(wrapForward.get('day')).toBe(16)
 })
 test('day', () => {
 	const chrono = new Chronosis()
@@ -110,14 +110,14 @@ test('day', () => {
 	expect(normal.get('month')).toBe(5)
 
 	// Negative, should wrap back
-	const wrap_back = chrono.set('day', -8)
-	expect(wrap_back.get('day')).toBe(23)
-	expect(wrap_back.get('month')).toBe(4)
+	const wrapBack = chrono.set('day', -8)
+	expect(wrapBack.get('day')).toBe(23)
+	expect(wrapBack.get('month')).toBe(4)
 
 	// Positive, should wrap forward
-	const wrap_forward = chrono.set('day', 35)
-	expect(wrap_forward.get('day')).toBe(5)
-	expect(wrap_forward.get('month')).toBe(6)
+	const wrapForward = chrono.set('day', 35)
+	expect(wrapForward.get('day')).toBe(5)
+	expect(wrapForward.get('month')).toBe(6)
 })
 test('month', () => {
 	const chrono = new Chronosis()
@@ -128,14 +128,14 @@ test('month', () => {
 	expect(normal.get('year')).toBe(2020)
 
 	// Negative, should wrap back
-	const wrap_back = chrono.set('month', -5)
-	expect(wrap_back.get('month')).toBe(7)
-	expect(wrap_back.get('year')).toBe(2019)
+	const wrapBack = chrono.set('month', -5)
+	expect(wrapBack.get('month')).toBe(7)
+	expect(wrapBack.get('year')).toBe(2019)
 
 	// Positive, should wrap forward
-	const wrap_forward = chrono.set('month', 18)
-	expect(wrap_forward.get('month')).toBe(6)
-	expect(wrap_forward.get('year')).toBe(2021)
+	const wrapForward = chrono.set('month', 18)
+	expect(wrapForward.get('month')).toBe(6)
+	expect(wrapForward.get('year')).toBe(2021)
 })
 test('year', () => {
 	const chrono = new Chronosis()

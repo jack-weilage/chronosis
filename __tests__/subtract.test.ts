@@ -14,9 +14,9 @@ test('no arg', () => {
 	expect(normal.get('second')).toBe(29)
 
 	// Should wrap back
-	const wrap_back = chrono.subtract(750)
-	expect(wrap_back.get('millisecond')).toBe(749)
-	expect(wrap_back.get('second')).toBe(28)
+	const wrapBack = chrono.subtract(750)
+	expect(wrapBack.get('millisecond')).toBe(749)
+	expect(wrapBack.get('second')).toBe(28)
 })
 test('immutable', () => {
 	const first = new Chronosis()
@@ -51,9 +51,9 @@ test('millisecond', () => {
 	expect(normal.get('second')).toBe(29)
 
 	// Should wrap back
-	const wrap_back = chrono.subtract(750, 'millisecond')
-	expect(wrap_back.get('millisecond')).toBe(749)
-	expect(wrap_back.get('second')).toBe(28)
+	const wrapBack = chrono.subtract(750, 'millisecond')
+	expect(wrapBack.get('millisecond')).toBe(749)
+	expect(wrapBack.get('second')).toBe(28)
 })
 test('second', () => {
 	const chrono = new Chronosis()
@@ -64,9 +64,9 @@ test('second', () => {
 	expect(normal.get('minute')).toBe(29)
 
 	// Should wrap back
-	const wrap_forward = chrono.subtract(45, 'second')
-	expect(wrap_forward.get('second')).toBe(44)
-	expect(wrap_forward.get('minute')).toBe(28)
+	const wrapForward = chrono.subtract(45, 'second')
+	expect(wrapForward.get('second')).toBe(44)
+	expect(wrapForward.get('minute')).toBe(28)
 })
 test('minute', () => {
 	const chrono = new Chronosis()
@@ -77,9 +77,9 @@ test('minute', () => {
 	expect(normal.get('hour')).toBe(11)
 
 	// Should wrap back
-	const wrap_forward = chrono.subtract(35, 'minute')
-	expect(wrap_forward.get('minute')).toBe(54)
-	expect(wrap_forward.get('hour')).toBe(10)
+	const wrapForward = chrono.subtract(35, 'minute')
+	expect(wrapForward.get('minute')).toBe(54)
+	expect(wrapForward.get('hour')).toBe(10)
 })
 test('hour', () => {
 	const chrono = new Chronosis()
@@ -90,9 +90,9 @@ test('hour', () => {
 	expect(normal.get('day')).toBe(15)
 
 	// Should wrap back
-	const wrap_forward = chrono.subtract(25, 'hour')
-	expect(wrap_forward.get('hour')).toBe(10)
-	expect(wrap_forward.get('day')).toBe(14)
+	const wrapForward = chrono.subtract(25, 'hour')
+	expect(wrapForward.get('hour')).toBe(10)
+	expect(wrapForward.get('day')).toBe(14)
 })
 test('day', () => {
 	const chrono = new Chronosis()
@@ -103,9 +103,9 @@ test('day', () => {
 	expect(normal.get('month')).toBe(5)
 
 	// Should wrap back
-	const wrap_forward = chrono.subtract(20, 'day')
-	expect(wrap_forward.get('day')).toBe(26)
-	expect(wrap_forward.get('month')).toBe(4)
+	const wrapForward = chrono.subtract(20, 'day')
+	expect(wrapForward.get('day')).toBe(26)
+	expect(wrapForward.get('month')).toBe(4)
 })
 test('month', () => {
 	const chrono = new Chronosis()
@@ -116,9 +116,9 @@ test('month', () => {
 	expect(normal.get('year')).toBe(2020)
 
 	// Should wrap back
-	const wrap_forward = chrono.subtract(8, 'month')
-	expect(wrap_forward.get('month')).toBe(9)
-	expect(wrap_forward.get('year')).toBe(2019)
+	const wrapForward = chrono.subtract(8, 'month')
+	expect(wrapForward.get('month')).toBe(9)
+	expect(wrapForward.get('year')).toBe(2019)
 })
 test('year', () => {
 	const chrono = new Chronosis()

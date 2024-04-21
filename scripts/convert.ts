@@ -1,5 +1,5 @@
 import Bun from 'bun'
-import { main, module } from '../package.json'
+import { module, main } from '../package.json'
 
 const esm = await Bun.file(module).text()
 const cjs = esm.replace(

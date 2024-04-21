@@ -1,7 +1,5 @@
+import type { Chronosis } from 'chronosis'
 import type { PropsWithChildren } from 'react'
-
-import { Chronosis } from 'chronosis'
-const React = require('react')
 
 interface TableRowProps extends PropsWithChildren {
 	input: string

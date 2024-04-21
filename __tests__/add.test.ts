@@ -14,9 +14,9 @@ test('only value', () => {
 	expect(normal.get('second')).toBe(29)
 
 	// Should add one to the next unit
-	const wrap_forward = chrono.add(750)
-	expect(wrap_forward.get('millisecond')).toBe(249)
-	expect(wrap_forward.get('second')).toBe(30)
+	const wrapForward = chrono.add(750)
+	expect(wrapForward.get('millisecond')).toBe(249)
+	expect(wrapForward.get('second')).toBe(30)
 })
 test('immutable', () => {
 	const first = new Chronosis()
@@ -51,9 +51,9 @@ test('millisecond', () => {
 	expect(normal.get('second')).toBe(29)
 
 	// Should add one to the next unit
-	const wrap_forward = chrono.add(750, 'millisecond')
-	expect(wrap_forward.get('millisecond')).toBe(249)
-	expect(wrap_forward.get('second')).toBe(30)
+	const wrapForward = chrono.add(750, 'millisecond')
+	expect(wrapForward.get('millisecond')).toBe(249)
+	expect(wrapForward.get('second')).toBe(30)
 })
 test('second', () => {
 	const chrono = new Chronosis()
@@ -64,9 +64,9 @@ test('second', () => {
 	expect(normal.get('minute')).toBe(29)
 
 	// Should add one to the next unit
-	const wrap_forward = chrono.add(45, 'second')
-	expect(wrap_forward.get('second')).toBe(14)
-	expect(wrap_forward.get('minute')).toBe(30)
+	const wrapForward = chrono.add(45, 'second')
+	expect(wrapForward.get('second')).toBe(14)
+	expect(wrapForward.get('minute')).toBe(30)
 })
 test('minute', () => {
 	const chrono = new Chronosis()
@@ -77,9 +77,9 @@ test('minute', () => {
 	expect(normal.get('hour')).toBe(11)
 
 	// Should add one to the next unit
-	const wrap_forward = chrono.add(35, 'minute')
-	expect(wrap_forward.get('minute')).toBe(4)
-	expect(wrap_forward.get('hour')).toBe(12)
+	const wrapForward = chrono.add(35, 'minute')
+	expect(wrapForward.get('minute')).toBe(4)
+	expect(wrapForward.get('hour')).toBe(12)
 })
 test('hour', () => {
 	const chrono = new Chronosis()
@@ -90,9 +90,9 @@ test('hour', () => {
 	expect(normal.get('day')).toBe(15)
 
 	// Should add one to the next unit
-	const wrap_forward = chrono.add(25, 'hour')
-	expect(wrap_forward.get('hour')).toBe(12)
-	expect(wrap_forward.get('day')).toBe(16)
+	const wrapForward = chrono.add(25, 'hour')
+	expect(wrapForward.get('hour')).toBe(12)
+	expect(wrapForward.get('day')).toBe(16)
 })
 test('day', () => {
 	const chrono = new Chronosis()
@@ -103,9 +103,9 @@ test('day', () => {
 	expect(normal.get('month')).toBe(5)
 
 	// Should add one to the next unit
-	const wrap_forward = chrono.add(20, 'day')
-	expect(wrap_forward.get('day')).toBe(5)
-	expect(wrap_forward.get('month')).toBe(6)
+	const wrapForward = chrono.add(20, 'day')
+	expect(wrapForward.get('day')).toBe(5)
+	expect(wrapForward.get('month')).toBe(6)
 })
 test('month', () => {
 	const chrono = new Chronosis()
@@ -116,9 +116,9 @@ test('month', () => {
 	expect(normal.get('year')).toBe(2020)
 
 	// Should add one to the next unit
-	const wrap_forward = chrono.add(18, 'month')
-	expect(wrap_forward.get('month')).toBe(11)
-	expect(wrap_forward.get('year')).toBe(2021)
+	const wrapForward = chrono.add(18, 'month')
+	expect(wrapForward.get('month')).toBe(11)
+	expect(wrapForward.get('year')).toBe(2021)
 })
 test('year', () => {
 	const chrono = new Chronosis()

@@ -2,12 +2,8 @@
   "name": "chronosis",
   "version": "0.2.0",
   "description": "An extremely lightweight, modern date management library",
-  "keywords": [
-    "date",
-    "time",
-    "chronosis",
-    "typescript"
-  ],
+  "keywords": ["date", "time", "chronosis", "typescript"],
+  "workspaces": ["benchmarks", "docs"],
   "repository": {
     "type": "git",
     "url": "https://github.com/jack-weilage/chronosis.git"
@@ -18,28 +14,25 @@
   "main": "./lib/index.cjs",
   "module": "./lib/index.js",
   "types": "./lib/index.d.ts",
-  "files": [
-    "./lib"
-  ],
+  "files": ["./lib"],
   "scripts": {
     "build": "bun build:code && bun build:types",
     "build:code": "bun build --minify --outdir=lib ./src/index.ts && bun run ./scripts/convert.ts",
     "build:types": "dts-bundle-generator --export-referenced-types false -o ./lib/index.d.ts ./src/index.ts",
-    "format": "prettier --cache --ignore-path .gitignore --write .",
-    "lint": "prettier --cache --ignore-path .gitignore --check . && tsc",
+    "format": "biome format . --write",
+    "lint": "biome check . && tsc",
     "prepare": "lefthook install",
     "release": "bun run build && changeset publish",
     "size": "bun run scripts/size.ts",
     "size:watch": "bun run --watch scripts/size.ts --watching"
   },
   "devDependencies": {
-    "@changesets/cli": "^2.26.2",
+    "@biomejs/biome": "^1.7.0",
+    "@changesets/cli": "^2.27.1",
     "bun-types": "^1.0.4",
-    "dts-bundle-generator": "^8.0.1",
-    "lefthook": "^1.5.2",
-    "prettier": "^3.0.3",
-    "prettier-plugin-organize-imports": "^3.2.3",
-    "prettier-plugin-packagejson": "^2.4.6",
-    "typescript": "^5.2.2"
-  }
+    "dts-bundle-generator": "^9.5.0",
+    "lefthook": "^1.6.10",
+    "typescript": "^5.4.5"
+  },
+  "trustedDependencies": ["@biomejs/biome", "lefthook"]
 }
